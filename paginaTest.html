@@ -151,6 +151,7 @@
       position: absolute;
       top: 20px;
       right: 30px;
+      z-index: 10;
     }
     .language-selector button {
       background-color: #0097a9;
@@ -167,7 +168,7 @@
 <body>
   <div class="language-selector">
       <button onclick="changeLanguage('it')">IT</button>
-      <button onclick="changeLanguage('en')">GB</button>
+      <button onclick="changeLanguage('en')">EN</button>
       <button onclick="changeLanguage('fr')">FR</button>
       <button onclick="changeLanguage('de')">DE</button>
     </div>
@@ -369,11 +370,12 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  const clean = (val) => (val || "").replace(/^\uFEFF/, "").trim();
   const p = new URLSearchParams(window.location.search);
-  const intestazione = p.get("intestazione") || "";
-  const giorno = p.get("giorno") || "";
-  const data = p.get("data") || "";
-  const orario = p.get("orario") || "";
+  const intestazione = clean(p.get("intestazione"));
+  const giorno = clean(p.get("giorno"));
+  const data = clean(p.get("data"));
+  const orario = clean(p.get("orario"));
 
   const translations = {
     it: {
