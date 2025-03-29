@@ -145,11 +145,30 @@
       text-align: right;
     }
   </style>
+
+  <style>
+    .language-selector button {
+      background-color: #0097a9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 10pt;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <div class="header-inner">
+      <div class="language-selector" style="margin-right: 15px;">
+        <button onclick="changeLanguage('it')">IT</button>
+        <button onclick="changeLanguage('en')">EN</button>
+        <button onclick="changeLanguage('fr')">FR</button>
+        <button onclick="changeLanguage('de')">DE</button>
+      </div>
         <div class="logo">
           <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
         </div>
@@ -227,5 +246,69 @@
     `;
     document.getElementById("riquadro").innerHTML = riquadro;
   </script>
+
+<script>
+  const clean = (val) => (val || "").replace(/^\uFEFF/, "").trim();
+  const p = new URLSearchParams(window.location.search);
+  const intestazione = clean(p.get("intestazione"));
+  const giorno = clean(p.get("giorno"));
+  const data = clean(p.get("data"));
+  const orario = clean(p.get("orario"));
+
+  const mesi = {
+    it: ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"],
+    en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+    fr: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+    de: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]
+  };
+
+  const giorniSettimana = {
+    it: { lunedì: "LUNEDÌ", martedì: "MARTEDÌ", mercoledì: "MERCOLEDÌ", giovedì: "GIOVEDÌ", venerdì: "VENERDÌ", sabato: "SABATO", domenica: "DOMENICA" },
+    en: { lunedì: "MONDAY", martedì: "TUESDAY", mercoledì: "WEDNESDAY", giovedì: "THURSDAY", venerdì: "FRIDAY", sabato: "SATURDAY", domenica: "SUNDAY" },
+    fr: { lunedì: "LUNDI", martedì: "MARDI", mercoledì: "MERCREDI", giovedì: "JEUDI", venerdì: "VENDREDI", sabato: "SAMEDI", domenica: "DIMANCHE" },
+    de: { lunedì: "MONTAG", martedì: "DIENSTAG", mercoledì: "MITTWOCH", giovedì: "DONNERSTAG", venerdì: "FREITAG", sabato: "SAMSTAG", domenica: "SONNTAG" }
+  };
+
+  const orarioFormattato = {
+    it: (o) => o,
+    en: (o) => o.replace("dalle", "from").replace("alle", "to"),
+    fr: (o) => o.replace("dalle", "de").replace("alle", "à"),
+    de: (o) => o.replace("dalle", "von").replace("alle", "bis")
+  };
+
+  const originalGiorno = giorno.toLowerCase();
+  const originalIntestazione = intestazione;
+
+  function renderRiquadro(lang) {
+    const giornoTradotto = giorniSettimana[lang]?.[originalGiorno] || originalGiorno.toUpperCase();
+    const orarioTradotto = orarioFormattato[lang](orario);
+    document.getElementById("riquadro").innerHTML = `
+      <div class="date-line">${giornoTradotto}</div>
+      <div class="date-line"><strong>${data}</strong></div>
+      <div class="date-line">${orarioTradotto}</div>
+    `;
+  }
+
+  function renderIntestazione(lang) {
+    const match = originalIntestazione.match(/(.*),\s(\d{1,2})\s([a-zè]+)\s(\d{4})/i);
+    if (match) {
+      const [_, luogo, giornoNum, meseIt, anno] = match;
+      const indexMese = mesi.it.indexOf(meseIt.toLowerCase());
+      const meseTradotto = mesi[lang][indexMese] || meseIt;
+      document.getElementById("intestazione").textContent = `${luogo}, ${giornoNum} ${meseTradotto} ${anno}`;
+    } else {
+      document.getElementById("intestazione").textContent = originalIntestazione;
+    }
+  }
+
+  window.changeLanguage = function(lang) {
+    renderIntestazione(lang);
+    renderRiquadro(lang);
+  };
+
+  const browserLang = navigator.language.slice(0, 2);
+  const supportedLangs = ['it', 'en', 'fr', 'de'];
+  changeLanguage(supportedLangs.includes(browserLang) ? browserLang : 'it');
+</script>
 </body>
 </html>
