@@ -149,17 +149,25 @@
       return params.get(key) || '';
     }
 
-    window.onload = () => {
-      const data = getParam('data');
-      const giorno = getParam('giorno');
-      const data2 = getParam('data2');
-      const orario = getParam('orario');
+    async function caricaDati() {
+      const id = getParam('id');
+      if (!id) return;
 
-      if (data) document.querySelector('.header-date').innerText = data;
-      if (giorno) document.getElementById('giorno').innerText = giorno;
-      if (data2) document.getElementById('data2').innerText = data2;
-      if (orario) document.getElementById('orario').innerText = orario;
+      try {
+        const response = await fetch(`${id}.json`);
+        if (!response.ok) throw new Error("File non trovato");
+        const dati = await response.json();
+
+        document.querySelector('.header-date').innerText = dati.data || '';
+        document.getElementById('giorno').innerText = dati.giorno || '';
+        document.getElementById('data2').innerText = dati.data2 || '';
+        document.getElementById('orario').innerText = dati.orario || '';
+      } catch (e) {
+        alert("Errore nel caricamento dati");
+      }
     }
+
+    window.onload = caricaDati;
   </script>
 </head>
 <body>
