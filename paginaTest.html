@@ -127,10 +127,20 @@
     .footer {
       font-size: 9pt;
       color: #0097a9;
-      text-align: center;
       margin-top: 60px;
-      border-top: 1px solid #ccc;
       padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .footer > div {
+      width: 25%;
+      text-align: left;
+    }
+    .footer a {
+      color: #0097a9;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -185,10 +195,20 @@
     </div>
 
     <div class="footer">
-      Locarnese Ente Acqua<br>
-      Piazza Grande 3, Casella postale, 6601 Locarno<br>
-      T +41 91 601 83 00 | info@lea-ti.ch | <a href="https://www.lea-ti.ch" style="color:#0097a9; text-decoration: none;">lea-ti.ch</a><br>
-      12008.002
+      <div>
+        <strong>Locarnese Ente Acqua</strong><br>
+        Piazza Grande 3, Casella postale, 6601 Locarno
+      </div>
+      <div style="text-align: center;">
+        T +41 91 601 83 00
+      </div>
+      <div style="text-align: center;">
+        <a href="mailto:info@lea-ti.ch">info@lea-ti.ch</a>
+      </div>
+      <div style="text-align: right;">
+        <a href="https://www.lea-ti.ch">lea-ti.ch</a><br>
+        12008.002
+      </div>
     </div>
   </div>
 </body>
