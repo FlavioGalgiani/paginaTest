@@ -143,6 +143,24 @@
       text-align: right;
     }
   </style>
+  <script>
+    function getParam(key) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(key) || '';
+    }
+
+    window.onload = () => {
+      const data = getParam('data');
+      const giorno = getParam('giorno');
+      const data2 = getParam('data2');
+      const orario = getParam('orario');
+
+      if (data) document.querySelector('.header-date').innerText = data;
+      if (giorno) document.getElementById('giorno').innerText = giorno;
+      if (data2) document.getElementById('data2').innerText = data2;
+      if (orario) document.getElementById('orario').innerText = orario;
+    }
+  </script>
 </head>
 <body>
   <div class="container">
@@ -166,9 +184,9 @@
           A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
         </div>
         <div class="date-box">
-          MARTEDÌ<br>
-          <strong>07.06.2022</strong>
-          dalle 08:30 alle 11:30
+          <div id="giorno">MARTEDÌ</div>
+          <strong id="data2">07.06.2022</strong>
+          <div id="orario">dalle 08:30 alle 11:30</div>
         </div>
       </div>
     </div>
