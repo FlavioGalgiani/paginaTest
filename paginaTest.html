@@ -166,9 +166,6 @@
   </style>
 
   <style>
-    .language-selector {
-      margin-right: 20px;
-    }
     .language-selector button {
       background-color: #0097a9;
       color: white;
@@ -191,14 +188,17 @@
     <div class="container">
     <div class="header">
       <div class="header-inner">
-      <div class="language-selector">
-        <button onclick="changeLanguage('it')">IT</button>
-        <button onclick="changeLanguage('en')">EN</button>
-        <button onclick="changeLanguage('fr')">FR</button>
-        <button onclick="changeLanguage('de')">DE</button>
-      </div>
+        <div style="display: flex; align-items: flex-end; gap: 12px;">
+    
         <div class="logo">
           <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
+        </div>
+        </div>
+        <div class="language-selector">
+            <button onclick="changeLanguage('it')">IT</button>
+            <button onclick="changeLanguage('en')">EN</button>
+            <button onclick="changeLanguage('fr')">FR</button>
+            <button onclick="changeLanguage('de')">DE</button>
         </div>
         <div class="header-date" id="intestazione">Locarno, [DATA]</div>
       </div>
@@ -559,9 +559,6 @@ DOCTYPE html>
   </style>
 
   <style>
-    .language-selector {
-      margin-right: 20px;
-    }
     .language-selector button {
       background-color: #0097a9;
       color: white;
@@ -584,14 +581,17 @@ DOCTYPE html>
     <div class="container">
     <div class="header">
       <div class="header-inner">
-      <div class="language-selector">
-        <button onclick="changeLanguage('it')">IT</button>
-        <button onclick="changeLanguage('en')">EN</button>
-        <button onclick="changeLanguage('fr')">FR</button>
-        <button onclick="changeLanguage('de')">DE</button>
-      </div>
+        <div style="display: flex; align-items: flex-end; gap: 12px;">
+    
         <div class="logo">
           <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
+        </div>
+        </div>
+        <div class="language-selector">
+            <button onclick="changeLanguage('it')">IT</button>
+            <button onclick="changeLanguage('en')">EN</button>
+            <button onclick="changeLanguage('fr')">FR</button>
+            <button onclick="changeLanguage('de')">DE</button>
         </div>
         <div class="header-date" id="intestazione">Locarno, [DATA]</div>
       </div>
@@ -791,6 +791,19 @@ const intestazione = clean(p.get("intestazione"));
 const giorno = clean(p.get("giorno"));
 const data = clean(p.get("data"));
 const orario = clean(p.get("orario"));
+window.changeLanguage = function(lang) {
+  const t = translations[lang];
+  document.getElementById("titolo-label").innerHTML = t.label;
+  document.getElementById("testo-testo").innerHTML = t.text;
+  document.getElementById("titolo-dispo").textContent = t.dispoTitle;
+  document.getElementById("paragrafo-dispo").textContent = t.dispoText;
+  document.getElementById("box1").textContent = t.box1;
+  document.getElementById("box2").textContent = t.box2;
+  document.getElementById("box3").textContent = t.box3;
+  document.getElementById("disclaimer").innerHTML = t.disclaimer;
+  renderIntestazione(lang);
+  renderRiquadro(lang);
+};
 window.addEventListener("DOMContentLoaded", function () {
   const clean = (val) => (val || "").replace(/^\uFEFF/, "").trim();
   const p = new URLSearchParams(window.location.search);
