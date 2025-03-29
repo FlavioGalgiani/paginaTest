@@ -38,9 +38,9 @@
     }
     .title-block {
       display: flex;
-      border-bottom: 4px solid #0097a9;
-      padding: 20px 0;
-      margin-bottom: 30px;
+      padding: 20px 0 10px;
+      margin-bottom: 20px;
+      align-items: flex-start;
     }
     .title-label {
       width: 240px;
@@ -48,24 +48,31 @@
       color: #0097a9;
       font-size: 12pt;
       line-height: 1.4;
+      padding-top: 0;
     }
     .title-text {
       font-size: 11pt;
       line-height: 1.5;
+      padding-top: 0;
     }
     .date-box {
       background-color: #b6dee5;
       padding: 20px;
       text-align: center;
-      width: 100%;
-      margin: 30px auto;
+      width: 500px;
+      margin: 0 auto 30px auto;
       font-size: 12pt;
       font-weight: normal;
+      border-radius: 4px;
     }
     .date-box strong {
       display: block;
       margin: 6px 0 2px;
       font-size: 13pt;
+    }
+    .divider {
+      border-bottom: 4px solid #0097a9;
+      margin-bottom: 30px;
     }
   </style>
 </head>
@@ -96,6 +103,8 @@
       <strong>07.06.2022</strong>
       dalle 08:30 alle 11:30
     </div>
+
+    <div class="divider"></div>
   </div>
 </body>
 </html>
