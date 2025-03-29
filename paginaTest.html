@@ -123,6 +123,7 @@
       align-items: center;
       justify-content: center;
       height: 100px;
+      text-align: center;
     }
     .footer {
       font-size: 9pt;
@@ -150,7 +151,7 @@
         <div class="logo">
           <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
         </div>
-        <div class="header-date" id="intestazione">Locarno, 10 gennaio 2024</div>
+        <div class="header-date" id="intestazione">Locarno, [DATA]</div>
       </div>
     </div>
 
@@ -164,10 +165,10 @@
         <div class="title-text">
           A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
         </div>
-        <div class="date-box">
-          <div id="giorno">MARTEDÌ</div>
-          <strong id="data">07.06.2022</strong>
-          <div id="orario">dalle 08:30 alle 11:30</div>
+        <div class="date-box" id="riquadro">
+          GIORNO<br>
+          <strong>DATA</strong><br>
+          ORARIO
         </div>
       </div>
     </div>
@@ -203,11 +204,17 @@
 
   <script>
     const p = new URLSearchParams(window.location.search);
+    const intestazione = p.get("intestazione") || "";
+    const giorno = p.get("giorno") || "";
+    const data = p.get("data") || "";
+    const orario = p.get("orario") || "";
 
-    document.getElementById("intestazione").textContent = p.get("intestazione") || "Locarno, [data]";
-    document.getElementById("giorno").textContent = p.get("giorno") || "Giorno";
-    document.getElementById("data").textContent = p.get("data") || "Data";
-    document.getElementById("orario").textContent = p.get("orario") || "Orario";
+    document.getElementById("intestazione").textContent = intestazione;
+    document.getElementById("riquadro").innerHTML = `
+      ${giorno.toUpperCase()}<br>
+      <strong>${data}</strong><br>
+      ${orario}
+    `;
   </script>
 </body>
 </html>
