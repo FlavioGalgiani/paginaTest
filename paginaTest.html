@@ -18,7 +18,7 @@
     .header {
       border-bottom: 4px solid #0097a9;
       padding-bottom: 30px;
-      margin-bottom: 20;
+      margin-bottom: 20px;
     }
     .header-inner {
       display: flex;
@@ -123,7 +123,6 @@
       align-items: center;
       justify-content: center;
       height: 100px;
-      text-align: center;
     }
     .footer {
       font-size: 9pt;
@@ -143,32 +142,6 @@
       text-align: right;
     }
   </style>
-  <script>
-    function getParam(key) {
-      const params = new URLSearchParams(window.location.search);
-      return params.get(key) || '';
-    }
-
-    async function caricaDati() {
-      const id = getParam('id');
-      if (!id) return;
-
-      try {
-        const response = await fetch(`${id}.json`);
-        if (!response.ok) throw new Error("File non trovato");
-        const dati = await response.json();
-
-        document.querySelector('.header-date').innerText = dati.data || '';
-        document.getElementById('giorno').innerText = dati.giorno || '';
-        document.getElementById('data2').innerText = dati.data2 || '';
-        document.getElementById('orario').innerText = dati.orario || '';
-      } catch (e) {
-        alert("Errore nel caricamento dati");
-      }
-    }
-
-    window.onload = caricaDati;
-  </script>
 </head>
 <body>
   <div class="container">
@@ -177,7 +150,7 @@
         <div class="logo">
           <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
         </div>
-        <div class="header-date">Locarno, 10 gennaio 2024</div>
+        <div class="header-date" id="intestazione">Locarno, 10 gennaio 2024</div>
       </div>
     </div>
 
@@ -193,7 +166,7 @@
         </div>
         <div class="date-box">
           <div id="giorno">MARTEDÌ</div>
-          <strong id="data2">07.06.2022</strong>
+          <strong id="data">07.06.2022</strong>
           <div id="orario">dalle 08:30 alle 11:30</div>
         </div>
       </div>
@@ -221,20 +194,20 @@
     </div>
 
     <div class="footer">
-      <div style="width: 32%;">
-        <strong>Locarnese Ente Acqua</strong><br>
-        Piazza Grande 3, Casella postale, 6601 Locarno
-      </div>
-      <div style="text-align: left; width: 23%;">
-        T +41 91 601 83 00
-      </div>
-      <div style="text-align: left; width: 20%;">
-        <a href="mailto:info@lea-ti.ch">info@lea-ti.ch</a>
-      </div>
-      <div class="right" style="width: 25%;">
-        <a href="https://www.lea-ti.ch">lea-ti.ch</a>
-      </div>
+      <div style="width: 32%;"><strong>Locarnese Ente Acqua</strong><br>Piazza Grande 3, Casella postale, 6601 Locarno</div>
+      <div style="text-align: left; width: 23%;">T +41 91 601 83 00</div>
+      <div style="text-align: left; width: 20%;"><a href="mailto:info@lea-ti.ch">info@lea-ti.ch</a></div>
+      <div class="right" style="width: 25%;"><a href="https://www.lea-ti.ch">lea-ti.ch</a></div>
     </div>
   </div>
+
+  <script>
+    const p = new URLSearchParams(window.location.search);
+
+    document.getElementById("intestazione").textContent = p.get("intestazione") || "Locarno, [data]";
+    document.getElementById("giorno").textContent = p.get("giorno") || "Giorno";
+    document.getElementById("data").textContent = p.get("data") || "Data";
+    document.getElementById("orario").textContent = p.get("orario") || "Orario";
+  </script>
 </body>
 </html>
