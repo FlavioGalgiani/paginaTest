@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+  <style>
+    .language-selector {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+    .language-selector button {
+      background-color: #0097a9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 10pt;
+    }
+  </style>
   <meta charset="UTF-8">
   <title>Comunicazione LEA</title>
   <style>
@@ -147,14 +164,13 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="language-selector">
+  <div class="language-selector">
       <button onclick="changeLanguage('it')">IT</button>
       <button onclick="changeLanguage('en')">GB</button>
       <button onclick="changeLanguage('fr')">FR</button>
       <button onclick="changeLanguage('de')">DE</button>
     </div>
-
+    <div class="container">
     <div class="header">
       <div class="header-inner">
         <div class="logo">
