@@ -36,11 +36,8 @@
     .header-date {
       font-size: 10pt;
     }
-    .title-block {
+    .main-content {
       display: flex;
-      padding: 0;
-      margin-bottom: 0;
-      align-items: flex-start;
     }
     .title-label {
       width: 240px;
@@ -50,15 +47,14 @@
       line-height: 1.4;
       padding-top: 0;
     }
+    .right-content {
+      flex: 1;
+    }
     .title-text {
       font-size: 11pt;
       line-height: 1.5;
       padding-top: 0;
       max-width: 760px;
-    }
-    .date-box-wrapper {
-      margin-left: 240px;
-      margin-top: 0;
     }
     .date-box {
       background-color: #b6dee5;
@@ -68,6 +64,7 @@
       font-size: 12pt;
       font-weight: normal;
       border-radius: 4px;
+      margin-top: 4px;
     }
     .date-box strong {
       display: block;
@@ -92,22 +89,21 @@
       </div>
     </div>
 
-    <div class="title-block">
+    <div class="main-content">
       <div class="title-label">
         Sospensione<br>
         erogazione acqua<br>
         potabile
       </div>
-      <div class="title-text">
-        A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
-      </div>
-    </div>
-
-    <div class="date-box-wrapper">
-      <div class="date-box">
-        MARTEDÌ<br>
-        <strong>07.06.2022</strong>
-        dalle 08:30 alle 11:30
+      <div class="right-content">
+        <div class="title-text">
+          A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
+        </div>
+        <div class="date-box">
+          MARTEDÌ<br>
+          <strong>07.06.2022</strong>
+          dalle 08:30 alle 11:30
+        </div>
       </div>
     </div>
 
