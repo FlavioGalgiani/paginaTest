@@ -14,6 +14,22 @@
     .container {
       max-width: 1024px;
       margin: 0 auto;
+      position: relative;
+    }
+    .language-selector {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .language-selector button {
+      margin-left: 5px;
+      padding: 4px 10px;
+      font-size: 10pt;
+      cursor: pointer;
+      background-color: #0097a9;
+      color: white;
+      border: none;
+      border-radius: 4px;
     }
     .header {
       border-bottom: 4px solid #0097a9;
@@ -147,85 +163,74 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="header-inner">
-        <div class="logo">
-          <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
-        </div>
-        <div class="header-date" id="intestazione">Locarno, [DATA]</div>
-      </div>
-    </div>
-
-    <div class="main-content">
-      <div class="title-label">
-        Sospensione<br>
-        erogazione acqua<br>
-        potabile
-      </div>
-      <div class="right-content">
-        <div class="title-text">
-          A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
-        </div>
-        <div class="date-box" id="riquadro">
-          <!-- Dati inseriti via JS -->
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="boxes-container">
-      <div class="boxes-label">
-        <div class="section-title">Disposizioni</div>
-      </div>
-      <div class="boxes-wrapper">
-        <p>Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:</p>
-        <div class="boxes">
-          <div class="box">Stoccare dell’acqua per eventuali urgenze</div>
-          <div class="box">Chiudere i rubinetti d’entrata principali</div>
-          <div class="box">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="disclaimer">
-      Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei “Neoperl” (aeratore-filtro sul rubinetto).<br><br>
-      <strong>Ringraziamo l’utenza per la comprensione e la collaborazione.</strong>
-    </div>
-
-    <div class="footer">
-      <div style="width: 32%;">
-        <strong>Locarnese Ente Acqua</strong><br>
-        Piazza Grande 3, Casella postale, 6601 Locarno
-      </div>
-      <div style="text-align: left; width: 23%;">
-        T +41 91 601 83 00
-      </div>
-      <div style="text-align: left; width: 20%;">
-        <a href="mailto:info@lea-ti.ch">info@lea-ti.ch</a>
-      </div>
-      <div class="right" style="width: 25%;">
-        <a href="https://www.lea-ti.ch">lea-ti.ch</a>
-      </div>
-    </div>
+  <div class="language-selector">
+    <button onclick="changeLanguage('it')">🇮🇹</button>
+    <button onclick="changeLanguage('en')">🇬🇧</button>
+    <button onclick="changeLanguage('fr')">🇫🇷</button>
+    <button onclick="changeLanguage('de')">🇩🇪</button>
   </div>
 
+  <!-- Resto del contenuto HTML qui (header, main content, boxes, disclaimer, footer) -->
+
   <script>
-    const p = new URLSearchParams(window.location.search);
-    const intestazione = p.get("intestazione") || "";
-    const giorno = p.get("giorno") || "";
-    const data = p.get("data") || "";
-    const orario = p.get("orario") || "";
+    const translations = {
+      it: {
+        label: "Sospensione<br>erogazione acqua<br>potabile",
+        text: "A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:",
+        dispoTitle: "Disposizioni",
+        dispoText: "Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:",
+        box1: "Stoccare dell’acqua per eventuali urgenze",
+        box2: "Chiudere i rubinetti d’entrata principali",
+        box3: "Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)",
+        disclaimer: "Al termine della sospensione aprire lentamente i rubinetti principali..."
+      },
+      en: {
+        label: "Interruption<br>of drinking water<br>supply",
+        text: "Due to maintenance work, <strong>the drinking water supply will be interrupted</strong> on the following date:",
+        dispoTitle: "Instructions",
+        dispoText: "Before the water supply interruption, users are asked to observe the following:",
+        box1: "Store water for emergencies",
+        box2: "Close main water intake valves",
+        box3: "Disconnect appliances using tap water (dishwashers, washing machines, etc.)",
+        disclaimer: "After the interruption, slowly open the main taps..."
+      },
+      fr: {
+        label: "Interruption<br>de l'eau potable",
+        text: "En raison de travaux, <strong>l'approvisionnement en eau potable sera interrompu</strong> le jour suivant:",
+        dispoTitle: "Consignes",
+        dispoText: "Avant l'interruption, veuillez respecter les consignes suivantes:",
+        box1: "Stocker de l'eau pour les urgences",
+        box2: "Fermer les robinets d'arrivée principaux",
+        box3: "Débrancher les appareils alimentés par l'eau (lave-vaisselle, machines à laver, etc.)",
+        disclaimer: "Après l'interruption, ouvrez lentement les robinets principaux..."
+      },
+      de: {
+        label: "Unterbrechung<br>der Trinkwasserversorgung",
+        text: "Aufgrund von Arbeiten wird die <strong>Trinkwasserversorgung am folgenden Tag unterbrochen</strong>:",
+        dispoTitle: "Hinweise",
+        dispoText: "Vor der Unterbrechung bitten wir die Nutzer, Folgendes zu beachten:",
+        box1: "Wasser für Notfälle bevorraten",
+        box2: "Hauptwasserhähne schließen",
+        box3: "Geräte, die Wasser verwenden, ausschalten (Spülmaschinen, Waschmaschinen, etc.)",
+        disclaimer: "Nach der Unterbrechung öffnen Sie langsam die Hauptwasserhähne..."
+      }
+    };
 
-    document.getElementById("intestazione").textContent = intestazione;
+    function changeLanguage(lang) {
+      const t = translations[lang];
+      document.getElementById("titolo-label").innerHTML = t.label;
+      document.getElementById("testo-testo").innerHTML = t.text;
+      document.getElementById("titolo-dispo").textContent = t.dispoTitle;
+      document.getElementById("paragrafo-dispo").textContent = t.dispoText;
+      document.getElementById("box1").textContent = t.box1;
+      document.getElementById("box2").textContent = t.box2;
+      document.getElementById("box3").textContent = t.box3;
+      document.getElementById("disclaimer").innerHTML = t.disclaimer;
+    }
 
-    const riquadro = `
-      <div class="date-line">${giorno.toUpperCase()}</div>
-      <div class="date-line"><strong>${data}</strong></div>
-      <div class="date-line">${orario}</div>
-    `;
-    document.getElementById("riquadro").innerHTML = riquadro;
+    const browserLang = navigator.language.slice(0, 2);
+    const supportedLangs = ['it', 'en', 'fr', 'de'];
+    changeLanguage(supportedLangs.includes(browserLang) ? browserLang : 'it');
   </script>
 </body>
 </html>
