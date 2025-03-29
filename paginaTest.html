@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Sospensione erogazione acqua potabile</title>
+  <title>Comunicazione LEA</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Calibri&display=swap');
 
@@ -14,106 +14,61 @@
       color: #000;
     }
     .container {
-      max-width: 800px;
+      max-width: 1024px;
       margin: 0 auto;
     }
     .header {
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 4px solid #0097a9;
+      padding-bottom: 20px;
       margin-bottom: 30px;
     }
     .logo {
-      max-height: 70px;
+      width: 120px;
     }
-    .title {
-      font-size: 22pt;
-      color: #004b8d;
+    .logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .header-date {
+      font-size: 10pt;
+      margin-top: 10px;
+    }
+    .title-block {
+      display: flex;
+      border-bottom: 4px solid #0097a9;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    .title-label {
+      width: 240px;
       font-weight: bold;
-      margin: 40px 0 30px;
-    }
-    .date-box {
-      float: right;
-      background: #d9d9d9;
-      padding: 10px 20px;
-      text-align: center;
-      font-size: 14pt;
-      font-weight: bold;
-      border-radius: 6px;
-    }
-    .section {
-      clear: both;
-      font-size: 11pt;
-      margin-top: 30px;
-      line-height: 1.6;
-    }
-    .section h2 {
+      color: #0097a9;
       font-size: 12pt;
-      color: #004b8d;
-      margin-bottom: 10px;
     }
-    .instruction-boxes {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .instruction {
-      background: #f2f2f2;
-      padding: 12px 16px;
-      border-radius: 4px;
-      text-align: center;
-    }
-    .footer {
-      font-size: 9pt;
-      margin-top: 60px;
-      border-top: 1px solid #ccc;
-      padding-top: 10px;
-      text-align: left;
-      color: #333;
-    }
-    .footer a {
-      color: #004b8d;
-      text-decoration: none;
+    .title-text {
+      font-size: 11pt;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <img src="https://lea-ti.ch/img/logo-lea.svg" alt="Logo Locarnese Ente Acqua" class="logo">
-    </div>
-
-    <div class="title">Sospensione<br>erogazione acqua potabile</div>
-
-    <div class="date-box">
-      MARTEDÌ<br>
-      07.06.2022<br>
-      08:30 - 11:30
-    </div>
-
-    <div class="section">
-      A seguito di lavori sulla rete di distribuzione verrà sospesa l’erogazione di acqua potabile il giorno indicato.
-    </div>
-
-    <div class="section">
-      <h2>Disposizioni</h2>
-      <div class="instruction-boxes">
-        <div class="instruction">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
-        <div class="instruction">Chiudere tutti i rubinetti all’interno e all’esterno degli stabili per evitare possibili risucchi</div>
-        <div class="instruction">Chiudere i rubinetti d’entrata principali</div>
-        <div class="instruction">Stoccare dell’acqua per eventuali urgenze</div>
+      <div class="logo">
+        <img src="https://lea-ti.ch/img/logo-lea.svg" alt="LEA Logo">
       </div>
+      <div class="header-date">Locarno, 10 gennaio 2024</div>
     </div>
 
-    <div class="section">
-      Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei “Neoperl” (aeratore-filtro sul rubinetto).
-    </div>
-
-    <div class="footer">
-      Locarnese Ente Acqua<br>
-      Piazza Grande 3, Casella postale, 6601 Locarno<br>
-      T +41 91 601 83 00 | info@lea-ti.ch | <a href="https://lea-ti.ch">lea-ti.ch</a>
+    <div class="title-block">
+      <div class="title-label">Sospensione<br>erogazione acqua potabile</div>
+      <div class="title-text">
+        A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
+      </div>
     </div>
   </div>
 </body>
