@@ -14,22 +14,6 @@
     .container {
       max-width: 1024px;
       margin: 0 auto;
-      position: relative;
-    }
-    .language-selector {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-    .language-selector button {
-      margin-left: 5px;
-      padding: 4px 10px;
-      font-size: 10pt;
-      cursor: pointer;
-      background-color: #0097a9;
-      color: white;
-      border: none;
-      border-radius: 4px;
     }
     .header {
       border-bottom: 4px solid #0097a9;
@@ -164,12 +148,6 @@
 </head>
 <body>
   <div class="container">
-    <div class="language-selector">
-      <button onclick="changeLanguage('it')">🇮🇹</button>
-      <button onclick="changeLanguage('en')">🇬🇧</button>
-      <button onclick="changeLanguage('fr')">🇫🇷</button>
-      <button onclick="changeLanguage('de')">🇩🇪</button>
-    </div>
     <div class="header">
       <div class="header-inner">
         <div class="logo">
@@ -178,28 +156,44 @@
         <div class="header-date" id="intestazione">Locarno, [DATA]</div>
       </div>
     </div>
+
     <div class="main-content">
-      <div class="title-label" id="titolo-label"></div>
+      <div class="title-label">
+        Sospensione<br>
+        erogazione acqua<br>
+        potabile
+      </div>
       <div class="right-content">
-        <div class="title-text" id="testo-testo"></div>
-        <div class="date-box" id="riquadro"></div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="boxes-container">
-      <div class="boxes-label">
-        <div class="section-title" id="titolo-dispo"></div>
-      </div>
-      <div class="boxes-wrapper">
-        <p id="paragrafo-dispo"></p>
-        <div class="boxes">
-          <div class="box" id="box1"></div>
-          <div class="box" id="box2"></div>
-          <div class="box" id="box3"></div>
+        <div class="title-text">
+          A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
+        </div>
+        <div class="date-box" id="riquadro">
+          <!-- Dati inseriti via JS -->
         </div>
       </div>
     </div>
-    <div class="disclaimer" id="disclaimer"></div>
+
+    <div class="divider"></div>
+
+    <div class="boxes-container">
+      <div class="boxes-label">
+        <div class="section-title">Disposizioni</div>
+      </div>
+      <div class="boxes-wrapper">
+        <p>Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:</p>
+        <div class="boxes">
+          <div class="box">Stoccare dell’acqua per eventuali urgenze</div>
+          <div class="box">Chiudere i rubinetti d’entrata principali</div>
+          <div class="box">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei “Neoperl” (aeratore-filtro sul rubinetto).<br><br>
+      <strong>Ringraziamo l’utenza per la comprensione e la collaborazione.</strong>
+    </div>
+
     <div class="footer">
       <div style="width: 32%;">
         <strong>Locarnese Ente Acqua</strong><br>
@@ -216,6 +210,7 @@
       </div>
     </div>
   </div>
+
   <script>
     const p = new URLSearchParams(window.location.search);
     const intestazione = p.get("intestazione") || "";
@@ -223,10 +218,86 @@
     const data = p.get("data") || "";
     const orario = p.get("orario") || "";
 
-    const translations = { /* omesso qui per brevità, ma è incluso nel file reale */ };
-    const mesi = { /* come da struttura multilingua per mesi */ };
-    const giorniSettimana = { /* struttura per giorni */ };
-    const orarioFormattato = { /* conversione orari */ };
+    document.getElementById("intestazione").textContent = intestazione;
+
+    const riquadro = `
+      <div class="date-line">${giorno.toUpperCase()}</div>
+      <div class="date-line"><strong>${data}</strong></div>
+      <div class="date-line">${orario}</div>
+    `;
+    document.getElementById("riquadro").innerHTML = riquadro;
+  </script>
+
+  <script>
+    const p = new URLSearchParams(window.location.search);
+    const intestazione = p.get("intestazione") || "";
+    const giorno = p.get("giorno") || "";
+    const data = p.get("data") || "";
+    const orario = p.get("orario") || "";
+
+    const translations = {
+      it: {
+        label: "Sospensione<br>erogazione acqua<br>potabile",
+        text: "A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:",
+        dispoTitle: "Disposizioni",
+        dispoText: "Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:",
+        box1: "Stoccare dell’acqua per eventuali urgenze",
+        box2: "Chiudere i rubinetti d’entrata principali",
+        box3: "Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)",
+        disclaimer: "Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. [...]"
+      },
+      en: {
+        label: "Interruption<br>of drinking water<br>supply",
+        text: "Due to maintenance work, <strong>the drinking water supply will be interrupted</strong> on the following date:",
+        dispoTitle: "Instructions",
+        dispoText: "Before the water supply interruption, users are asked to observe the following:",
+        box1: "Store water for emergencies",
+        box2: "Close main water intake valves",
+        box3: "Disconnect appliances using tap water (dishwashers, washing machines, etc.)",
+        disclaimer: "After the interruption, slowly open the main taps (e.g., bathtub, garden), then open interior taps. [...]"
+      },
+      fr: {
+        label: "Interruption<br>de l'eau potable",
+        text: "En raison de travaux, <strong>l'approvisionnement en eau potable sera interrompu</strong> le jour suivant:",
+        dispoTitle: "Consignes",
+        dispoText: "Avant l'interruption, veuillez respecter les consignes suivantes:",
+        box1: "Stocker de l'eau pour les urgences",
+        box2: "Fermer les robinets d'arrivée principaux",
+        box3: "Débrancher les appareils alimentés par l'eau (lave-vaisselle, machines à laver, etc.)",
+        disclaimer: "Après l'interruption, ouvrez lentement les robinets principaux (ex. baignoire, jardin), puis les robinets intérieurs. [...]"
+      },
+      de: {
+        label: "Unterbrechung<br>der Trinkwasserversorgung",
+        text: "Aufgrund von Arbeiten wird die <strong>Trinkwasserversorgung am folgenden Tag unterbrochen</strong>:",
+        dispoTitle: "Hinweise",
+        dispoText: "Vor der Unterbrechung bitten wir die Nutzer, Folgendes zu beachten:",
+        box1: "Wasser für Notfälle bevorraten",
+        box2: "Hauptwasserhähne schließen",
+        box3: "Geräte, die Wasser verwenden, ausschalten (Spülmaschinen, Waschmaschinen, etc.)",
+        disclaimer: "Nach der Unterbrechung öffnen Sie langsam die Hauptwasserhähne (z.B. Badewanne, Garten) und anschließend die Wasserhähne im Haus. [...]"
+      }
+    };
+
+    const mesi = {
+      it: ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"],
+      en: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+      fr: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+      de: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]
+    };
+
+    const giorniSettimana = {
+      it: { lunedì: "LUNEDÌ", martedì: "MARTEDÌ", mercoledì: "MERCOLEDÌ", giovedì: "GIOVEDÌ", venerdì: "VENERDÌ", sabato: "SABATO", domenica: "DOMENICA" },
+      en: { lunedì: "MONDAY", martedì: "TUESDAY", mercoledì: "WEDNESDAY", giovedì: "THURSDAY", venerdì: "FRIDAY", sabato: "SATURDAY", domenica: "SUNDAY" },
+      fr: { lunedì: "LUNDI", martedì: "MARDI", mercoledì: "MERCREDI", giovedì: "JEUDI", venerdì: "VENDREDI", sabato: "SAMEDI", domenica: "DIMANCHE" },
+      de: { lunedì: "MONTAG", martedì: "DIENSTAG", mercoledì: "MITTWOCH", giovedì: "DONNERSTAG", venerdì: "FREITAG", sabato: "SAMSTAG", domenica: "SONNTAG" }
+    };
+
+    const orarioFormattato = {
+      it: (o) => o,
+      en: (o) => o.replace("dalle", "from").replace("alle", "to"),
+      fr: (o) => o.replace("dalle", "de").replace("alle", "à"),
+      de: (o) => o.replace("dalle", "von").replace("alle", "bis")
+    };
 
     const originalGiorno = giorno.toLowerCase();
     const originalIntestazione = intestazione;
