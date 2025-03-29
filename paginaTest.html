@@ -69,10 +69,16 @@
       border-radius: 4px;
       margin-top: 4px;
     }
-    .date-box strong {
-      display: block;
-      margin: 6px 0 2px;
+    .riquadro-riga {
+      line-height: 1.5;
+      margin: 0;
+    }
+    .data-forte strong {
       font-size: 13pt;
+      font-weight: bold;
+      line-height: 1.5;
+      margin: 0;
+      display: inline;
     }
     .divider {
       border-bottom: 4px solid #0097a9;
@@ -165,9 +171,10 @@
           A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
         </div>
         <div class="date-box" id="riquadro">
-          GIORNO<br>
-          <strong>DATA</strong><br>
-          ORARIO
+          <!-- Popolato dinamicamente -->
+          <div class="riquadro-riga">GIORNO</div>
+          <div class="riquadro-riga data-forte"><strong>DATA</strong></div>
+          <div class="riquadro-riga">ORARIO</div>
         </div>
       </div>
     </div>
@@ -219,9 +226,9 @@
 
     document.getElementById("intestazione").textContent = intestazione;
     document.getElementById("riquadro").innerHTML = `
-      ${giorno.toUpperCase()}<br>
-      <strong>${data}</strong><br>
-      ${orario}
+      <div class="riquadro-riga">${giorno.toUpperCase()}</div>
+      <div class="riquadro-riga data-forte"><strong>${data}</strong></div>
+      <div class="riquadro-riga">${orario}</div>
     `;
   </script>
 </body>
