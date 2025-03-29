@@ -5,7 +5,7 @@
   <title>Comunicazione LEA</title>
   <style>
     body {
-      font-family: 'Calibri', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 40px;
       background: #ffffff;
@@ -16,12 +16,14 @@
       margin: 0 auto;
     }
     .header {
+      border-bottom: 4px solid #0097a9;
+      padding-bottom: 10px;
+      margin-bottom: 0;
+    }
+    .header-inner {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      border-bottom: 4px solid #0097a9;
-      padding-bottom: 10px;
-      margin-bottom: 30px;
     }
     .logo {
       width: 160px;
@@ -33,12 +35,11 @@
     }
     .header-date {
       font-size: 10pt;
-      padding-bottom: 5px;
     }
     .title-block {
       display: flex;
       border-bottom: 4px solid #0097a9;
-      padding-bottom: 10px;
+      padding: 20px 0;
       margin-bottom: 30px;
     }
     .title-label {
@@ -57,17 +58,19 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo">
-        <img src="LEA-Logo.jpg" alt="LEA Logo">
+      <div class="header-inner">
+        <div class="logo">
+          <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
+        </div>
+        <div class="header-date">Locarno, 10 gennaio 2024</div>
       </div>
-      <div class="header-date">Locarno, 10 gennaio 2024</div>
     </div>
 
     <div class="title-block">
       <div class="title-label">
         Sospensione<br>
-        erogazione<br>
-        acqua potabile
+        erogazione acqua<br>
+        potabile
       </div>
       <div class="title-text">
         A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
@@ -76,4 +79,3 @@
   </div>
 </body>
 </html>
-
