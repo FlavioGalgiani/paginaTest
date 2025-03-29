@@ -68,9 +68,12 @@
       font-weight: normal;
       border-radius: 4px;
       margin-top: 4px;
+    }
+    .date-line {
+      margin: 0;
       line-height: 1.5;
     }
-    .date-box strong {
+    .date-line strong {
       font-size: 13pt;
       font-weight: bold;
     }
@@ -165,7 +168,7 @@
           A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
         </div>
         <div class="date-box" id="riquadro">
-          GIORNO<br><strong>DATA</strong><br>ORARIO
+          <!-- Dati inseriti via JS -->
         </div>
       </div>
     </div>
@@ -216,11 +219,13 @@
     const orario = p.get("orario") || "";
 
     document.getElementById("intestazione").textContent = intestazione;
-    document.getElementById("riquadro").innerHTML = `
-      ${giorno.toUpperCase()}<br>
-      <strong>${data}</strong><br>
-      ${orario}
+
+    const riquadro = `
+      <div class="date-line">${giorno.toUpperCase()}</div>
+      <div class="date-line"><strong>${data}</strong></div>
+      <div class="date-line">${orario}</div>
     `;
+    document.getElementById("riquadro").innerHTML = riquadro;
   </script>
 </body>
 </html>
