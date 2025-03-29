@@ -163,16 +163,73 @@
   </style>
 </head>
 <body>
-  <div class="language-selector">
-    <button onclick="changeLanguage('it')">🇮🇹</button>
-    <button onclick="changeLanguage('en')">🇬🇧</button>
-    <button onclick="changeLanguage('fr')">🇫🇷</button>
-    <button onclick="changeLanguage('de')">🇩🇪</button>
+  <div class="container">
+    <div class="language-selector">
+      <button onclick="changeLanguage('it')">🇮🇹</button>
+      <button onclick="changeLanguage('en')">🇬🇧</button>
+      <button onclick="changeLanguage('fr')">🇫🇷</button>
+      <button onclick="changeLanguage('de')">🇩🇪</button>
+    </div>
+    <div class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
+        </div>
+        <div class="header-date" id="intestazione">Locarno, [DATA]</div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="title-label" id="titolo-label"></div>
+      <div class="right-content">
+        <div class="title-text" id="testo-testo"></div>
+        <div class="date-box" id="riquadro"></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="boxes-container">
+      <div class="boxes-label">
+        <div class="section-title" id="titolo-dispo"></div>
+      </div>
+      <div class="boxes-wrapper">
+        <p id="paragrafo-dispo"></p>
+        <div class="boxes">
+          <div class="box" id="box1"></div>
+          <div class="box" id="box2"></div>
+          <div class="box" id="box3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="disclaimer" id="disclaimer"></div>
+    <div class="footer">
+      <div style="width: 32%;">
+        <strong>Locarnese Ente Acqua</strong><br>
+        Piazza Grande 3, Casella postale, 6601 Locarno
+      </div>
+      <div style="text-align: left; width: 23%;">
+        T +41 91 601 83 00
+      </div>
+      <div style="text-align: left; width: 20%;">
+        <a href="mailto:info@lea-ti.ch">info@lea-ti.ch</a>
+      </div>
+      <div class="right" style="width: 25%;">
+        <a href="https://www.lea-ti.ch">lea-ti.ch</a>
+      </div>
+    </div>
   </div>
-
-  <!-- Resto del contenuto HTML qui (header, main content, boxes, disclaimer, footer) -->
-
   <script>
+    const p = new URLSearchParams(window.location.search);
+    const intestazione = p.get("intestazione") || "";
+    const giorno = p.get("giorno") || "";
+    const data = p.get("data") || "";
+    const orario = p.get("orario") || "";
+
+    document.getElementById("intestazione").textContent = intestazione;
+    document.getElementById("riquadro").innerHTML = `
+      <div class="date-line">${giorno.toUpperCase()}</div>
+      <div class="date-line"><strong>${data}</strong></div>
+      <div class="date-line">${orario}</div>
+    `;
+
     const translations = {
       it: {
         label: "Sospensione<br>erogazione acqua<br>potabile",
@@ -182,7 +239,7 @@
         box1: "Stoccare dell’acqua per eventuali urgenze",
         box2: "Chiudere i rubinetti d’entrata principali",
         box3: "Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)",
-        disclaimer: "Al termine della sospensione aprire lentamente i rubinetti principali..."
+        disclaimer: "Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei “Neoperl” (aeratore-filtro sul rubinetto).<br><br><strong>Ringraziamo l’utenza per la comprensione e la collaborazione.</strong>"
       },
       en: {
         label: "Interruption<br>of drinking water<br>supply",
@@ -192,7 +249,7 @@
         box1: "Store water for emergencies",
         box2: "Close main water intake valves",
         box3: "Disconnect appliances using tap water (dishwashers, washing machines, etc.)",
-        disclaimer: "After the interruption, slowly open the main taps..."
+        disclaimer: "After the interruption, slowly open the main taps (e.g., bathtub, garden), then open interior taps. This helps remove air and any sediment. Also check the inlet filter (if present) and the faucet aerators (Neoperl).<br><br><strong>Thank you for your understanding and cooperation.</strong>"
       },
       fr: {
         label: "Interruption<br>de l'eau potable",
@@ -202,7 +259,7 @@
         box1: "Stocker de l'eau pour les urgences",
         box2: "Fermer les robinets d'arrivée principaux",
         box3: "Débrancher les appareils alimentés par l'eau (lave-vaisselle, machines à laver, etc.)",
-        disclaimer: "Après l'interruption, ouvrez lentement les robinets principaux..."
+        disclaimer: "Après l'interruption, ouvrez lentement les robinets principaux (ex. baignoire, jardin), puis les robinets intérieurs. Cette procédure éliminera l'air et les éventuelles impuretés. Vérifiez également le filtre d'entrée (si présent) et les aérateurs Neoperl.<br><br><strong>Merci pour votre compréhension et votre collaboration.</strong>"
       },
       de: {
         label: "Unterbrechung<br>der Trinkwasserversorgung",
@@ -212,7 +269,7 @@
         box1: "Wasser für Notfälle bevorraten",
         box2: "Hauptwasserhähne schließen",
         box3: "Geräte, die Wasser verwenden, ausschalten (Spülmaschinen, Waschmaschinen, etc.)",
-        disclaimer: "Nach der Unterbrechung öffnen Sie langsam die Hauptwasserhähne..."
+        disclaimer: "Nach der Unterbrechung öffnen Sie langsam die Hauptwasserhähne (z.B. Badewanne, Garten) und anschließend die Wasserhähne im Haus. Diese Maßnahme entfernt Luft und mögliche Trübungen. Prüfen Sie auch den Eingangssiebfilter (falls vorhanden) und die Wasserhahnbelüfter (Neoperl).<br><br><strong>Vielen Dank für Ihr Verständnis und Ihre Mitarbeit.</strong>"
       }
     };
 
