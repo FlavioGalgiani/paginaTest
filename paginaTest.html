@@ -81,22 +81,42 @@
       color: #0097a9;
       font-size: 12pt;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .section-title::after {
+      content: "";
+      flex: 1;
+      border-bottom: 4px solid #0097a9;
+      margin-left: 10px;
     }
     .disclaimer {
       font-size: 11pt;
       line-height: 1.6;
       margin-top: 30px;
     }
+    .boxes-container {
+      display: flex;
+      margin-top: 20px;
+    }
+    .boxes-label {
+      width: 240px;
+    }
+    .boxes-wrapper {
+      flex: 1;
+    }
     .boxes {
       display: flex;
+      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 12px 12px;
       margin-top: 12px;
     }
     .box {
       background-color: #eeeeee;
       padding: 20px;
-      width: calc(50% - 6px);
+      flex: 1;
+      min-width: 220px;
       font-size: 10.5pt;
       text-align: center;
     }
@@ -133,12 +153,19 @@
 
     <div class="divider"></div>
 
-    <div class="section-title">Disposizioni</div>
-    <div class="boxes">
-      <div class="box">Stoccare dell’acqua per eventuali urgenze</div>
-      <div class="box">Chiudere i rubinetti d’entrata principali</div>
-      <div class="box">Chiudere tutti i rubinetti all’interno e all’esterno degli stabili per evitare possibili risucchi</div>
-      <div class="box">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
+    <div class="boxes-container">
+      <div class="boxes-label">
+        <div class="section-title">Disposizioni</div>
+      </div>
+      <div class="boxes-wrapper">
+        Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:
+        <div class="boxes">
+          <div class="box">Stoccare dell’acqua per eventuali urgenze</div>
+          <div class="box">Chiudere i rubinetti d’entrata principali</div>
+          <div class="box">Chiudere tutti i rubinetti all’interno e all’esterno degli stabili per evitare possibili risucchi</div>
+          <div class="box">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
+        </div>
+      </div>
     </div>
 
     <div class="disclaimer">
