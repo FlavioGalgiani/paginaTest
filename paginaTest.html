@@ -164,6 +164,22 @@
       font-size: 10pt;
     }
   </style>
+
+  <style>
+    .language-selector {
+      margin-right: 20px;
+    }
+    .language-selector button {
+      background-color: #0097a9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 10pt;
+    }
+  </style>
 </head>
 <body>
   <div class="language-selector">
@@ -175,6 +191,12 @@
     <div class="container">
     <div class="header">
       <div class="header-inner">
+      <div class="language-selector">
+        <button onclick="changeLanguage('it')">IT</button>
+        <button onclick="changeLanguage('en')">EN</button>
+        <button onclick="changeLanguage('fr')">FR</button>
+        <button onclick="changeLanguage('de')">DE</button>
+      </div>
         <div class="logo">
           <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
         </div>
@@ -535,6 +557,22 @@ DOCTYPE html>
       font-size: 10pt;
     }
   </style>
+
+  <style>
+    .language-selector {
+      margin-right: 20px;
+    }
+    .language-selector button {
+      background-color: #0097a9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 10pt;
+    }
+  </style>
 </head>
 <body>
   <div class="language-selector">
@@ -546,6 +584,12 @@ DOCTYPE html>
     <div class="container">
     <div class="header">
       <div class="header-inner">
+      <div class="language-selector">
+        <button onclick="changeLanguage('it')">IT</button>
+        <button onclick="changeLanguage('en')">EN</button>
+        <button onclick="changeLanguage('fr')">FR</button>
+        <button onclick="changeLanguage('de')">DE</button>
+      </div>
         <div class="logo">
           <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
         </div>
@@ -740,7 +784,14 @@ DOCTYPE html>
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+
+const clean = (val) => (val || "").replace(/^\uFEFF/, "").trim();
+const p = new URLSearchParams(window.location.search);
+const intestazione = clean(p.get("intestazione"));
+const giorno = clean(p.get("giorno"));
+const data = clean(p.get("data"));
+const orario = clean(p.get("orario"));
+window.addEventListener("DOMContentLoaded", function () {
   const clean = (val) => (val || "").replace(/^\uFEFF/, "").trim();
   const p = new URLSearchParams(window.location.search);
   const intestazione = clean(p.get("intestazione"));
