@@ -107,25 +107,39 @@
       color: #0097a9;
       font-size: 12pt;
       margin-bottom: 10px;
-      margin-top: 25px;
+    }
+    .disclaimer {
+      font-size: 11pt;
+      line-height: 1.6;
+      margin-top: 30px;
+      padding-left: 240px;
+      padding-right: 0;
+      box-sizing: border-box;
+      text-align: justify;
+    }
+    .boxes-container {
+      display: flex;
+      margin-top: 10px;
+    }
+    .boxes-label {
+      width: 240px;
     }
     .boxes-wrapper {
-      padding-left: 0;
-      padding-right: 0;
+      flex: 1;
     }
-    #text-box-intro {
-      font-size: 11pt;
+    .boxes-wrapper > p {
       margin-top: 0;
+      font-size: 11pt;
     }
     .boxes {
       display: flex;
-      justify-content: space-between;
-      gap: 24px;
+      justify-content: space-evenly;
       margin-top: 12px;
     }
     .box {
       background-color: #eeeeee;
-      flex: 1;
+      padding: 20px;
+      width: 31%;
       font-size: 11pt;
       text-align: center;
       box-sizing: border-box;
@@ -133,13 +147,6 @@
       align-items: center;
       justify-content: center;
       height: 100px;
-      padding: 20px;
-    }
-    .disclaimer {
-      font-size: 11pt;
-      line-height: 1.6;
-      margin-top: 30px;
-      text-align: justify;
     }
     .footer {
       font-size: 9pt;
@@ -183,19 +190,24 @@
         <div class="title-text" id="text-intro">
           A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
         </div>
-        <div class="date-box" id="riquadro"></div>
+        <div class="date-box" id="riquadro">
+          <!-- Dati dinamici -->
+        </div>
       </div>
     </div>
 
     <div class="divider"></div>
-
-    <div class="section-title" id="label-section">Disposizioni</div>
-    <div class="boxes-wrapper">
-      <p id="text-box-intro">Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:</p>
-      <div class="boxes">
-        <div class="box" id="box1">Stoccare dell’acqua per eventuali urgenze</div>
-        <div class="box" id="box2">Chiudere i rubinetti d’entrata principali</div>
-        <div class="box" id="box3">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
+    <div class="boxes-container">
+      <div class="boxes-label">
+        <div class="section-title" id="label-section">Disposizioni</div>
+      </div>
+      <div class="boxes-wrapper">
+        <p id="text-box-intro">Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:</p>
+        <div class="boxes">
+          <div class="box" id="box1">Stoccare dell’acqua per eventuali urgenze</div>
+          <div class="box" id="box2">Chiudere i rubinetti d’entrata principali</div>
+          <div class="box" id="box3">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
+        </div>
       </div>
     </div>
 
@@ -222,7 +234,6 @@
       </div>
     </div>
   </div>
-
   <script>
     const translations = {
       it: {
@@ -232,8 +243,8 @@
           settembre: "settembre", ottobre: "ottobre", novembre: "novembre", dicembre: "dicembre"
         },
         days: {
-          LUNEDI: "LUNEDÌ", MARTEDI: "MARTEDÌ", MERCOLEDI: "MERCOLEDÌ",
-          GIOVEDI: "GIOVEDÌ", VENERDI: "VENERDÌ", SABATO: "SABATO", DOMENICA: "DOMENICA"
+          LUNEDÌ: "LUNEDÌ", MARTEDÌ: "MARTEDÌ", MERCOLEDÌ: "MERCOLEDÌ",
+          GIOVEDÌ: "GIOVEDÌ", VENERDÌ: "VENERDÌ", SABATO: "SABATO", DOMENICA: "DOMENICA"
         },
         timePrefix: "dalle",
         timeTo: "alle",
@@ -254,8 +265,8 @@
           settembre: "septembre", ottobre: "octobre", novembre: "novembre", dicembre: "décembre"
         },
         days: {
-          LUNEDI: "LUNDI", MARTEDI: "MARDI", MERCOLEDI: "MERCREDI",
-          GIOVEDI: "JEUDI", VENERDI: "VENDREDI", SABATO: "SAMEDI", DOMENICA: "DIMANCHE"
+          LUNEDÌ: "LUNDI", MARTEDÌ: "MARDI", MERCOLEDÌ: "MERCREDI",
+          GIOVEDÌ: "JEUDI", VENERDÌ: "VENDREDI", SABATO: "SAMEDI", DOMENICA: "DIMANCHE"
         },
         timePrefix: "de",
         timeTo: "à",
@@ -276,8 +287,8 @@
           settembre: "September", ottobre: "Oktober", novembre: "November", dicembre: "Dezember"
         },
         days: {
-          LUNEDI: "MONTAG", MARTEDI: "DIENSTAG", MERCOLEDI: "MITTWOCH",
-          GIOVEDI: "DONNERSTAG", VENERDI: "FREITAG", SABATO: "SAMSTAG", DOMENICA: "SONNTAG"
+          LUNEDÌ: "MONTAG", MARTEDÌ: "DIENSTAG", MERCOLEDÌ: "MITTWOCH",
+          GIOVEDÌ: "DONNERSTAG", VENERDÌ: "FREITAG", SABATO: "SAMSTAG", DOMENICA: "SONNTAG"
         },
         timePrefix: "von",
         timeTo: "bis",
@@ -298,8 +309,8 @@
           settembre: "September", ottobre: "October", novembre: "November", dicembre: "December"
         },
         days: {
-          LUNEDI: "MONDAY", MARTEDI: "TUESDAY", MERCOLEDI: "WEDNESDAY",
-          GIOVEDI: "THURSDAY", VENERDI: "FRIDAY", SABATO: "SATURDAY", DOMENICA: "SUNDAY"
+          LUNEDÌ: "MONDAY", MARTEDÌ: "TUESDAY", MERCOLEDÌ: "WEDNESDAY",
+          GIOVEDÌ: "THURSDAY", VENERDÌ: "FRIDAY", SABATO: "SATURDAY", DOMENICA: "SUNDAY"
         },
         timePrefix: "from",
         timeTo: "to",
@@ -323,8 +334,6 @@
       const data = p.get("data") || "";
       const orario = p.get("orario") || "";
 
-      const normalize = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
-
       // ✏️ Traduzione intestazione (solo mese)
       const matchInt = intestazione.match(/^(.*?, \d{2}) (\w+) (\d{4})$/);
       const tradInt = matchInt ? `${matchInt[1]} ${t.months[matchInt[2]] || matchInt[2]} ${matchInt[3]}` : intestazione;
@@ -337,6 +346,7 @@
         : orario;
 
       // ✏️ Traduzione giorno
+      const normalize = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
       const giornoTradotto = t.days[normalize(giorno)] || giorno;
 
       document.getElementById("riquadro").innerHTML = `
