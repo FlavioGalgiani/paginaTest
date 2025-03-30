@@ -345,7 +345,8 @@
         : orario;
 
       // ✏️ Traduzione giorno
-      const giornoTradotto = t.days[giorno.toUpperCase()] || giorno;
+      const normalize = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+      const giornoTradotto = t.days[normalize(giorno)] || giorno;
 
       document.getElementById("riquadro").innerHTML = `
         <div class="date-line">${giornoTradotto}</div>
