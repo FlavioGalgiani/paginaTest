@@ -39,7 +39,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      transform: translateY(30px); /* allineamento verticale con il logo */
+      transform: translateY(30px);
     }
     .language-switcher button {
       background-color: #0097a9;
@@ -179,22 +179,20 @@
           <button onclick="setLanguage('de')">DE</button>
           <button onclick="setLanguage('en')">EN</button>
         </div>
-        <div class="header-date" id="intestazione">Locarno, [DATA]</div>
+        <div class="header-date" id="intestazione">Locarno, 04 aprile 2025</div>
       </div>
     </div>
 
     <div class="main-content">
-      <div class="title-label">
-        Sospensione<br>
-        erogazione acqua<br>
-        potabile
-      </div>
+      <div class="title-label" id="label-title">Sospensione<br>erogazione acqua<br>potabile</div>
       <div class="right-content">
-        <div class="title-text">
+        <div class="title-text" id="text-intro">
           A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
         </div>
         <div class="date-box" id="riquadro">
-          <!-- Dati inseriti via JS -->
+          <div class="date-line">MERCOLEDÌ</div>
+          <div class="date-line"><strong>01.01.2025</strong></div>
+          <div class="date-line">dalle 10:00 alle 15:00</div>
         </div>
       </div>
     </div>
@@ -203,21 +201,23 @@
 
     <div class="boxes-container">
       <div class="boxes-label">
-        <div class="section-title">Disposizioni</div>
+        <div class="section-title" id="label-section">Disposizioni</div>
       </div>
       <div class="boxes-wrapper">
-        <p>Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:</p>
+        <p id="text-box-intro">Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:</p>
         <div class="boxes">
-          <div class="box">Stoccare dell’acqua per eventuali urgenze</div>
-          <div class="box">Chiudere i rubinetti d’entrata principali</div>
-          <div class="box">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
+          <div class="box" id="box1">Stoccare dell’acqua per eventuali urgenze</div>
+          <div class="box" id="box2">Chiudere i rubinetti d’entrata principali</div>
+          <div class="box" id="box3">Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)</div>
         </div>
       </div>
     </div>
 
     <div class="disclaimer">
-      Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei “Neoperl” (aeratore-filtro sul rubinetto).<br><br>
-      <strong>Ringraziamo l’utenza per la comprensione e la collaborazione.</strong>
+      <span id="text-disclaimer">
+        Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei “Neoperl” (aeratore-filtro sul rubinetto).
+      </span><br><br>
+      <strong id="text-thanks">Ringraziamo l’utenza per la comprensione e la collaborazione.</strong>
     </div>
 
     <div class="footer">
@@ -238,24 +238,64 @@
   </div>
 
   <script>
-    const p = new URLSearchParams(window.location.search);
-    const intestazione = p.get("intestazione") || "";
-    const giorno = p.get("giorno") || "";
-    const data = p.get("data") || "";
-    const orario = p.get("orario") || "";
-
-    document.getElementById("intestazione").textContent = intestazione;
-
-    const riquadro = `
-      <div class="date-line">${giorno.toUpperCase()}</div>
-      <div class="date-line"><strong>${data}</strong></div>
-      <div class="date-line">${orario}</div>
-    `;
-    document.getElementById("riquadro").innerHTML = riquadro;
+    const translations = {
+      it: {
+        labelTitle: "Sospensione<br>erogazione acqua<br>potabile",
+        textIntro: "A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:",
+        labelSection: "Disposizioni",
+        textBoxIntro: "Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:",
+        box1: "Stoccare dell’acqua per eventuali urgenze",
+        box2: "Chiudere i rubinetti d’entrata principali",
+        box3: "Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)",
+        disclaimer: "Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei \"Neoperl\" (aeratore-filtro sul rubinetto).",
+        thanks: "Ringraziamo l’utenza per la comprensione e la collaborazione."
+      },
+      fr: {
+        labelTitle: "Suspension<br>de l'alimentation en<br>eau potable",
+        textIntro: "En raison de travaux sur le réseau de distribution, <strong>l'alimentation en eau potable sera suspendue</strong> le jour:",
+        labelSection: "Consignes",
+        textBoxIntro: "Avant la suspension de l'eau potable, nous invitons les usagers à respecter les consignes suivantes:",
+        box1: "Stocker de l’eau pour les urgences",
+        box2: "Fermer les robinets d’arrivée principaux",
+        box3: "Débrancher les appareils raccordés à l'eau potable (lave-vaisselle, lave-linge, etc)",
+        disclaimer: "Après la suspension, ouvrir lentement les robinets principaux (ex. baignoire, jardins, etc.) puis les robinets intérieurs. Cette procédure éliminera l'air et les éventuels dépôts. Il est recommandé de vérifier le filtre d'entrée (si présent) et les \"Neoperl\" (aérateurs).",
+        thanks: "Nous remercions les usagers pour leur compréhension et leur collaboration."
+      },
+      de: {
+        labelTitle: "Unterbrechung<br>der Trinkwasser<br>versorgung",
+        textIntro: "Aufgrund von Arbeiten am Verteilnetz wird die <strong>Trinkwasserversorgung unterbrochen</strong> am:",
+        labelSection: "Hinweise",
+        textBoxIntro: "Vor der Unterbrechung der Trinkwasserversorgung bitten wir die Nutzer, folgende Hinweise zu beachten:",
+        box1: "Wasser für Notfälle bereitstellen",
+        box2: "Hauptwasserhähne schliessen",
+        box3: "Geräte vom Trinkwassernetz trennen (Geschirrspüler, Waschmaschinen, etc)",
+        disclaimer: "Nach der Unterbrechung langsam die Hauptwasserhähne (z.B. Badewanne, Garten, etc.) und anschliessend die Innenhähne öffnen. Dadurch wird Luft und mögliche Trübungen entfernt. Prüfen Sie ggf. den Eingangfilter und die \"Neoperl\" (Strahlregler).",
+        thanks: "Wir danken den Nutzern für ihr Verständnis und ihre Mitarbeit."
+      },
+      en: {
+        labelTitle: "Suspension<br>of drinking water<br>supply",
+        textIntro: "Due to maintenance work on the distribution network, <strong>drinking water supply will be suspended</strong> on:",
+        labelSection: "Instructions",
+        textBoxIntro: "Before the suspension of the drinking water supply, users are requested to observe the following instructions:",
+        box1: "Store water for emergencies",
+        box2: "Close main water valves",
+        box3: "Disconnect appliances using drinking water (dishwashers, washing machines, etc)",
+        disclaimer: "After the suspension, slowly open the main taps (e.g. bathtub, garden, etc.), then the interior taps. This procedure will remove air and any possible turbidity. We also recommend checking the inlet filter (if present) and the \"Neoperl\" (aerator filter).",
+        thanks: "We thank users for their understanding and cooperation."
+      }
+    };
 
     function setLanguage(lang) {
-      alert("Lingua selezionata: " + lang);
-      // Qui potrai inserire il meccanismo per la traduzione dinamica
+      const t = translations[lang];
+      document.getElementById("label-title").innerHTML = t.labelTitle;
+      document.getElementById("text-intro").innerHTML = t.textIntro;
+      document.getElementById("label-section").textContent = t.labelSection;
+      document.getElementById("text-box-intro").textContent = t.textBoxIntro;
+      document.getElementById("box1").textContent = t.box1;
+      document.getElementById("box2").textContent = t.box2;
+      document.getElementById("box3").textContent = t.box3;
+      document.getElementById("text-disclaimer").textContent = t.disclaimer;
+      document.getElementById("text-thanks").textContent = t.thanks;
     }
   </script>
 </body>
