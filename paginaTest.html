@@ -118,11 +118,10 @@
       text-align: justify;
     }
     .boxes-container {
-      display: flex;
-      margin-top: 10px;
+      flex-direction: column;
     }
     .boxes-label {
-      width: 240px;
+      width: auto; /* oppure semplicemente rimuovi questa riga */
     }
     .boxes-wrapper {
       flex: 1;
@@ -133,15 +132,13 @@
     }
     .boxes {
       display: flex;
-      gap: 30px;               /* spazio fisso tra i box */
       justify-content: space-between;
       margin-top: 12px;
-      padding: 0 10px;         /* allinea con margini del testo */
-      box-sizing: border-box;
-  }
-  .box {
+      gap: 24px; /* spazio tra box */
+    }
+    .box {
       background-color: #eeeeee;
-      flex: 1;                 /* fa sì che tutti i box crescano allo stesso modo */
+      flex: 1;
       font-size: 11pt;
       text-align: center;
       box-sizing: border-box;
@@ -150,7 +147,7 @@
       justify-content: center;
       height: 100px;
       padding: 20px;
-  }
+    }
   .footer {
       font-size: 9pt;
       color: #0097a9;
