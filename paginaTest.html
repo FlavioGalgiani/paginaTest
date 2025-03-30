@@ -162,15 +162,17 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-inner">
-      <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px;">
-        <div class="language-selector">
-          <button onclick="changeLanguage('it')">IT</button>
-          <button onclick="changeLanguage('de')">DE</button>
-          <button onclick="changeLanguage('fr')">FR</button>
-          <button onclick="changeLanguage('en')">EN</button>
-        </div>
-      </div>
+      
+<div class="language-bar" style="display: flex; justify-content: flex-end; margin-right: 60px; margin-top: 10px;">
+  <div class="language-selector">
+    <button onclick="changeLanguage('it')">IT</button>
+    <button onclick="changeLanguage('de')">DE</button>
+    <button onclick="changeLanguage('fr')">FR</button>
+    <button onclick="changeLanguage('en')">EN</button>
+  </div>
+</div>
+<div class="header-inner" style="display: flex; flex-direction: column; align-items: center;">
+
         <div class="logo">
           <img src="https://raw.githubusercontent.com/FlavioGalgiani/paginaTest/main/LEA-Logo.jpg" alt="LEA Logo">
         </div>
@@ -293,7 +295,7 @@
     }
   };
 
-  window.changeLanguage = function(lang) {
+  function changeLanguage(lang) {
     const t = translations[lang];
     document.getElementById("titolo-label").innerHTML = t.label;
     document.getElementById("testo-testo").innerHTML = t.text;
@@ -303,12 +305,12 @@
     document.getElementById("box2").textContent = t.box2;
     document.getElementById("box3").textContent = t.box3;
     document.getElementById("disclaimer").innerHTML = t.disclaimer;
-  };
+  }
 
   const browserLang = navigator.language.slice(0, 2);
   const supported = ['it', 'de', 'fr', 'en'];
   const defaultLang = supported.includes(browserLang) ? browserLang : 'it';
-  changeLanguage(defaultLang);
+  window.addEventListener("DOMContentLoaded", () => changeLanguage(defaultLang));
 </script>
 </body>
 </html>
