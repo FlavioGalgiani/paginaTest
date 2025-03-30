@@ -133,13 +133,15 @@
     }
     .boxes {
       display: flex;
-      justify-content: space-evenly;
+      gap: 30px;               /* spazio fisso tra i box */
+      justify-content: space-between;
       margin-top: 12px;
-    }
-    .box {
+      padding: 0 10px;         /* allinea con margini del testo */
+      box-sizing: border-box;
+  }
+  .box {
       background-color: #eeeeee;
-      padding: 20px;
-      width: 31%;
+      flex: 1;                 /* fa sì che tutti i box crescano allo stesso modo */
       font-size: 11pt;
       text-align: center;
       box-sizing: border-box;
@@ -147,8 +149,9 @@
       align-items: center;
       justify-content: center;
       height: 100px;
-    }
-    .footer {
+      padding: 20px;
+  }
+  .footer {
       font-size: 9pt;
       color: #0097a9;
       margin-top: 60px;
