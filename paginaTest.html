@@ -179,7 +179,7 @@
           <button onclick="setLanguage('de')">DE</button>
           <button onclick="setLanguage('en')">EN</button>
         </div>
-        <div class="header-date" id="intestazione">Locarno, 04 aprile 2025</div>
+        <div class="header-date" id="intestazione">Locarno, [DATA]</div>
       </div>
     </div>
 
@@ -286,6 +286,21 @@
     };
 
     function setLanguage(lang) {
+      // Legge i dati dinamici dalla URL
+      const p = new URLSearchParams(window.location.search);
+      const intestazione = p.get("intestazione") || "";
+      const giorno = p.get("giorno") || "";
+      const data = p.get("data") || "";
+      const orario = p.get("orario") || "";
+
+      document.getElementById("intestazione").textContent = intestazione;
+      document.getElementById("riquadro").innerHTML = `
+        <div class="date-line">${giorno.toUpperCase()}</div>
+        <div class="date-line"><strong>${data}</strong></div>
+        <div class="date-line">${orario}</div>
+      `;
+
+      // Traduzioni
       const t = translations[lang];
       document.getElementById("label-title").innerHTML = t.labelTitle;
       document.getElementById("text-intro").innerHTML = t.textIntro;
@@ -298,9 +313,15 @@
       document.getElementById("text-thanks").textContent = t.thanks;
     }
 
-    const browserLang = navigator.language.slice(0, 2);
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramLang = urlParams.get("lang");
     const supportedLangs = ["it", "fr", "de", "en"];
-    const initialLang = supportedLangs.includes(browserLang) ? browserLang : "it";
+    const browserLang = navigator.language.slice(0, 2);
+    const initialLang = supportedLangs.includes(paramLang)
+      ? paramLang
+      : supportedLangs.includes(browserLang)
+      ? browserLang
+      : "it";
     setLanguage(initialLang);
   </script>
 </body>
