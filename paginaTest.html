@@ -235,148 +235,157 @@
     </div>
   </div>
   <script>
-    const translations = {
-      it: {
-        months: {
-          gennaio: "gennaio", febbraio: "febbraio", marzo: "marzo", aprile: "aprile",
-          maggio: "maggio", giugno: "giugno", luglio: "luglio", agosto: "agosto",
-          settembre: "settembre", ottobre: "ottobre", novembre: "novembre", dicembre: "dicembre"
-        },
-        days: {
-          LUNEDÌ: "LUNEDÌ", MARTEDÌ: "MARTEDÌ", MERCOLEDÌ: "MERCOLEDÌ",
-          GIOVEDÌ: "GIOVEDÌ", VENERDÌ: "VENERDÌ", SABATO: "SABATO", DOMENICA: "DOMENICA"
-        },
-        timePrefix: "dalle",
-        timeTo: "alle",
-        labelTitle: "Sospensione<br>erogazione acqua<br>potabile",
-        textIntro: "A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:",
-        labelSection: "Disposizioni",
-        textBoxIntro: "Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:",
-        box1: "Stoccare dell’acqua per eventuali urgenze",
-        box2: "Chiudere i rubinetti d’entrata principali",
-        box3: "Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)",
-        disclaimer: "Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei “Neoperl” (aeratore-filtro sul rubinetto).",
-        thanks: "Ringraziamo l’utenza per la comprensione e la collaborazione."
+  const translations = {
+    it: {
+      months: {
+        gennaio: "gennaio", febbraio: "febbraio", marzo: "marzo", aprile: "aprile",
+        maggio: "maggio", giugno: "giugno", luglio: "luglio", agosto: "agosto",
+        settembre: "settembre", ottobre: "ottobre", novembre: "novembre", dicembre: "dicembre"
       },
-      fr: {
-        months: {
-          gennaio: "janvier", febbraio: "février", marzo: "mars", aprile: "avril",
-          maggio: "mai", giugno: "juin", luglio: "juillet", agosto: "août",
-          settembre: "septembre", ottobre: "octobre", novembre: "novembre", dicembre: "décembre"
-        },
-        days: {
-          LUNEDÌ: "LUNDI", MARTEDÌ: "MARDI", MERCOLEDÌ: "MERCREDI",
-          GIOVEDÌ: "JEUDI", VENERDÌ: "VENDREDI", SABATO: "SAMEDI", DOMENICA: "DIMANCHE"
-        },
-        timePrefix: "de",
-        timeTo: "à",
-        labelTitle: "Suspension<br>de l'alimentation<br>en eau potable",
-        textIntro: "En raison de travaux sur le réseau de distribution, <strong>l’alimentation en eau potable sera suspendue</strong> le jour suivant :",
-        labelSection: "Consignes",
-        textBoxIntro: "Avant la suspension de l’eau potable, nous invitons les usagers à suivre les consignes suivantes :",
-        box1: "Stocker de l’eau pour d’éventuelles urgences",
-        box2: "Fermer les robinets d’entrée principaux",
-        box3: "Débrancher les appareils alimentés en eau potable (lave-vaisselle, lave-linge, etc.)",
-        disclaimer: "Après la suspension, ouvrez lentement les robinets principaux (baignoire, jardin, etc.), puis les robinets intérieurs. Cette procédure éliminera l’air et les éventuels troubles. Il est également conseillé de vérifier le filtre d’entrée (s’il y en a un) et les aérateurs de robinets (“Neoperl”).",
-        thanks: "Nous remercions les usagers pour leur compréhension et leur collaboration."
+      days: {
+        LUNEDI: "LUNEDÌ", MARTEDI: "MARTEDÌ", MERCOLEDI: "MERCOLEDÌ",
+        GIOVEDI: "GIOVEDÌ", VENERDI: "VENERDÌ", SABATO: "SABATO", DOMENICA: "DOMENICA"
       },
-      de: {
-        months: {
-          gennaio: "Januar", febbraio: "Februar", marzo: "März", aprile: "April",
-          maggio: "Mai", giugno: "Juni", luglio: "Juli", agosto: "August",
-          settembre: "September", ottobre: "Oktober", novembre: "November", dicembre: "Dezember"
-        },
-        days: {
-          LUNEDÌ: "MONTAG", MARTEDÌ: "DIENSTAG", MERCOLEDÌ: "MITTWOCH",
-          GIOVEDÌ: "DONNERSTAG", VENERDÌ: "FREITAG", SABATO: "SAMSTAG", DOMENICA: "SONNTAG"
-        },
-        timePrefix: "von",
-        timeTo: "bis",
-        labelTitle: "Unterbrechung<br>der Trinkwasser-<br>versorgung",
-        textIntro: "Aufgrund von Arbeiten am Verteilnetz wird die <strong>Trinkwasserversorgung am folgenden Tag unterbrochen</strong>:",
-        labelSection: "Hinweise",
-        textBoxIntro: "Vor der Unterbrechung des Trinkwassers wird die Bevölkerung gebeten, folgende Hinweise zu beachten:",
-        box1: "Wasser für Notfälle bereitstellen",
-        box2: "Hauptwasserhähne schließen",
-        box3: "Geräte vom Trinkwassernetz trennen (Geschirrspüler, Waschmaschinen usw.)",
-        disclaimer: "Nach der Unterbrechung langsam die Hauptventile (z. B. Badewanne, Garten) und danach die Innenarmaturen öffnen. So wird Luft und eventuelle Trübungen entfernt. Prüfen Sie auch den Eingangsfilter (falls vorhanden) und die Perlatoren („Neoperl“).",
-        thanks: "Wir danken den Nutzern für das Verständnis und die Mitarbeit."
+      timePrefix: "dalle",
+      timeTo: "alle",
+      labelTitle: "Sospensione<br>erogazione acqua<br>potabile",
+      textIntro: "A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:",
+      labelSection: "Disposizioni",
+      textBoxIntro: "Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:",
+      box1: "Stoccare dell’acqua per eventuali urgenze",
+      box2: "Chiudere i rubinetti d’entrata principali",
+      box3: "Disinserire eventuali apparecchi alimentati con acqua potabile (lavastovigli, lavatrici, ecc)",
+      disclaimer: "Al termine della sospensione aprire lentamente i rubinetti principali (es. vasca da bagno, giardini, etc.) ed in seguito i rubinetti d’erogazione interni. Questa procedura eliminerà l’aria ed eventuali intorbidimenti che potrebbero presentarsi. Non da ultimo si consiglia la verifica del filtro in entrata (se presente) e dei “Neoperl” (aeratore-filtro sul rubinetto).",
+      thanks: "Ringraziamo l’utenza per la comprensione e la collaborazione."
+    },
+    fr: {
+      months: {
+        gennaio: "janvier", febbraio: "février", marzo: "mars", aprile: "avril",
+        maggio: "mai", giugno: "juin", luglio: "juillet", agosto: "août",
+        settembre: "septembre", ottobre: "octobre", novembre: "novembre", dicembre: "décembre"
       },
-      en: {
-        months: {
-          gennaio: "January", febbraio: "February", marzo: "March", aprile: "April",
-          maggio: "May", giugno: "June", luglio: "July", agosto: "August",
-          settembre: "September", ottobre: "October", novembre: "November", dicembre: "December"
-        },
-        days: {
-          LUNEDÌ: "MONDAY", MARTEDÌ: "TUESDAY", MERCOLEDÌ: "WEDNESDAY",
-          GIOVEDÌ: "THURSDAY", VENERDÌ: "FRIDAY", SABATO: "SATURDAY", DOMENICA: "SUNDAY"
-        },
-        timePrefix: "from",
-        timeTo: "to",
-        labelTitle: "Suspension<br>of drinking<br>water supply",
-        textIntro: "Due to maintenance work on the distribution network, <strong>the supply of drinking water will be suspended</strong> on the following day:",
-        labelSection: "Instructions",
-        textBoxIntro: "Before the water suspension, users are kindly asked to follow these instructions:",
-        box1: "Store water for possible emergencies",
-        box2: "Close the main water intake valves",
-        box3: "Disconnect devices using drinking water (dishwashers, washing machines, etc.)",
-        disclaimer: "After the suspension, open the main valves slowly (e.g. bathtub, garden taps), then the internal faucets. This procedure will remove air and possible turbidity. Also check the inlet filter (if present) and tap aerators (“Neoperl”).",
-        thanks: "We thank users for their understanding and cooperation."
-      }
-    };
-
-    function setLanguage(lang) {
-      const t = translations[lang];
-      const p = new URLSearchParams(window.location.search);
-      const intestazione = p.get("intestazione") || "";
-      const giorno = p.get("giorno") || "";
-      const data = p.get("data") || "";
-      const orario = p.get("orario") || "";
-
-      // ✏️ Traduzione intestazione (solo mese)
-      const matchInt = intestazione.match(/^(.*?, \d{2}) (\w+) (\d{4})$/);
-      const tradInt = matchInt ? `${matchInt[1]} ${t.months[matchInt[2]] || matchInt[2]} ${matchInt[3]}` : intestazione;
-      document.getElementById("intestazione").textContent = tradInt;
-
-      // ✏️ Traduzione orario
-      const orarioMatch = orario.match(/(\d{2}:\d{2}).+?(\d{2}:\d{2})/);
-      const orarioTradotto = orarioMatch
-        ? `${t.timePrefix} ${orarioMatch[1]} ${t.timeTo} ${orarioMatch[2]}`
-        : orario;
-
-      // ✏️ Traduzione giorno
-      const normalize = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
-      const giornoTradotto = t.days[normalize(giorno)] || giorno;
-
-      document.getElementById("riquadro").innerHTML = `
-        <div class="date-line">${giornoTradotto}</div>
-        <div class="date-line"><strong>${data}</strong></div>
-        <div class="date-line">${orarioTradotto}</div>
-      `;
-
-      // Traduzioni fisse
-      document.getElementById("label-title").innerHTML = t.labelTitle;
-      document.getElementById("text-intro").innerHTML = t.textIntro;
-      document.getElementById("label-section").textContent = t.labelSection;
-      document.getElementById("text-box-intro").textContent = t.textBoxIntro;
-      document.getElementById("box1").textContent = t.box1;
-      document.getElementById("box2").textContent = t.box2;
-      document.getElementById("box3").textContent = t.box3;
-      document.getElementById("text-disclaimer").textContent = t.disclaimer;
-      document.getElementById("text-thanks").textContent = t.thanks;
+      days: {
+        LUNEDI: "LUNDI", MARTEDI: "MARDI", MERCOLEDI: "MERCREDI",
+        GIOVEDI: "JEUDI", VENERDI: "VENDREDI", SABATO: "SAMEDI", DOMENICA: "DIMANCHE"
+      },
+      timePrefix: "de",
+      timeTo: "à",
+      labelTitle: "Suspension<br>de l'alimentation<br>en eau potable",
+      textIntro: "En raison de travaux sur le réseau de distribution, <strong>l’alimentation en eau potable sera suspendue</strong> le jour suivant :",
+      labelSection: "Consignes",
+      textBoxIntro: "Avant la suspension de l’eau potable, nous invitons les usagers à suivre les consignes suivantes :",
+      box1: "Stocker de l’eau pour d’éventuelles urgences",
+      box2: "Fermer les robinets d’entrée principaux",
+      box3: "Débrancher les appareils alimentés en eau potable (lave-vaisselle, lave-linge, etc.)",
+      disclaimer: "Après la suspension, ouvrez lentement les robinets principaux (baignoire, jardin, etc.), puis les robinets intérieurs. Cette procédure éliminera l’air et les éventuels troubles. Il est également conseillé de vérifier le filtre d’entrée (s’il y en a un) et les aérateurs de robinets (“Neoperl”).",
+      thanks: "Nous remercions les usagers pour leur compréhension et leur collaboration."
+    },
+    de: {
+      months: {
+        gennaio: "Januar", febbraio: "Februar", marzo: "März", aprile: "April",
+        maggio: "Mai", giugno: "Juni", luglio: "Juli", agosto: "August",
+        settembre: "September", ottobre: "Oktober", novembre: "November", dicembre: "Dezember"
+      },
+      days: {
+        LUNEDI: "MONTAG", MARTEDI: "DIENSTAG", MERCOLEDI: "MITTWOCH",
+        GIOVEDI: "DONNERSTAG", VENERDI: "FREITAG", SABATO: "SAMSTAG", DOMENICA: "SONNTAG"
+      },
+      timePrefix: "von",
+      timeTo: "bis",
+      labelTitle: "Unterbrechung<br>der Trinkwasser-<br>versorgung",
+      textIntro: "Aufgrund von Arbeiten am Verteilnetz wird die <strong>Trinkwasserversorgung am folgenden Tag unterbrochen</strong>:",
+      labelSection: "Hinweise",
+      textBoxIntro: "Vor der Unterbrechung des Trinkwassers wird die Bevölkerung gebeten, folgende Hinweise zu beachten:",
+      box1: "Wasser für Notfälle bereitstellen",
+      box2: "Hauptwasserhähne schließen",
+      box3: "Geräte vom Trinkwassernetz trennen (Geschirrspüler, Waschmaschinen usw.)",
+      disclaimer: "Nach der Unterbrechung langsam die Hauptventile (z. B. Badewanne, Garten) und danach die Innenarmaturen öffnen. So wird Luft und eventuelle Trübungen entfernt. Prüfen Sie auch den Eingangsfilter (falls vorhanden) und die Perlatoren („Neoperl“).",
+      thanks: "Wir danken den Nutzern für das Verständnis und die Mitarbeit."
+    },
+    en: {
+      months: {
+        gennaio: "January", febbraio: "February", marzo: "March", aprile: "April",
+        maggio: "May", giugno: "June", luglio: "July", agosto: "August",
+        settembre: "September", ottobre: "October", novembre: "November", dicembre: "December"
+      },
+      days: {
+        LUNEDI: "MONDAY", MARTEDI: "TUESDAY", MERCOLEDI: "WEDNESDAY",
+        GIOVEDI: "THURSDAY", VENERDI: "FRIDAY", SABATO: "SATURDAY", DOMENICA: "SUNDAY"
+      },
+      timePrefix: "from",
+      timeTo: "to",
+      labelTitle: "Suspension<br>of drinking<br>water supply",
+      textIntro: "Due to maintenance work on the distribution network, <strong>the supply of drinking water will be suspended</strong> on the following day:",
+      labelSection: "Instructions",
+      textBoxIntro: "Before the water suspension, users are kindly asked to follow these instructions:",
+      box1: "Store water for possible emergencies",
+      box2: "Close the main water intake valves",
+      box3: "Disconnect devices using drinking water (dishwashers, washing machines, etc.)",
+      disclaimer: "After the suspension, open the main valves slowly (e.g. bathtub, garden taps), then the internal faucets. This procedure will remove air and possible turbidity. Also check the inlet filter (if present) and tap aerators (“Neoperl”).",
+      thanks: "We thank users for their understanding and cooperation."
     }
+  };
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramLang = urlParams.get("lang");
-    const supportedLangs = ["it", "fr", "de", "en"];
-    const browserLang = navigator.language.slice(0, 2);
-    const initialLang = supportedLangs.includes(paramLang)
-      ? paramLang
-      : supportedLangs.includes(browserLang)
-      ? browserLang
-      : "it";
-    setLanguage(initialLang);
-  </script>
+  let rawIntestazione, rawGiorno, rawData, rawOrario;
+
+  function setLanguage(lang) {
+    const t = translations[lang];
+    const p = new URLSearchParams(window.location.search);
+    const intestazione = p.get("intestazione") || rawIntestazione || "";
+    const giorno = p.get("giorno") || rawGiorno || "";
+    const data = p.get("data") || rawData || "";
+    const orario = p.get("orario") || rawOrario || "";
+
+    // Salva le versioni originali (una volta sola)
+    if (!rawIntestazione) rawIntestazione = intestazione;
+    if (!rawGiorno) rawGiorno = giorno;
+    if (!rawData) rawData = data;
+    if (!rawOrario) rawOrario = orario;
+
+    // Traduzione intestazione (solo mese)
+    const matchInt = rawIntestazione.match(/^(.*?, \d{2}) (\w+) (\d{4})$/);
+    const tradInt = matchInt ? `${matchInt[1]} ${t.months[matchInt[2]] || matchInt[2]} ${matchInt[3]}` : rawIntestazione;
+    document.getElementById("intestazione").textContent = tradInt;
+
+    // Traduzione orario
+    const orarioMatch = rawOrario.match(/(\d{2}:\d{2}).+?(\d{2}:\d{2})/);
+    const orarioTradotto = orarioMatch
+      ? `${t.timePrefix} ${orarioMatch[1]} ${t.timeTo} ${orarioMatch[2]}`
+      : rawOrario;
+
+    // Traduzione giorno
+    const normalize = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+    const giornoTradotto = t.days[normalize(rawGiorno)] || rawGiorno;
+
+    document.getElementById("riquadro").innerHTML = `
+      <div class="date-line">${giornoTradotto}</div>
+      <div class="date-line"><strong>${rawData}</strong></div>
+      <div class="date-line">${orarioTradotto}</div>
+    `;
+
+    // Traduzioni fisse
+    document.getElementById("label-title").innerHTML = t.labelTitle;
+    document.getElementById("text-intro").innerHTML = t.textIntro;
+    document.getElementById("label-section").textContent = t.labelSection;
+    document.getElementById("text-box-intro").textContent = t.textBoxIntro;
+    document.getElementById("box1").textContent = t.box1;
+    document.getElementById("box2").textContent = t.box2;
+    document.getElementById("box3").textContent = t.box3;
+    document.getElementById("text-disclaimer").textContent = t.disclaimer;
+    document.getElementById("text-thanks").textContent = t.thanks;
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramLang = urlParams.get("lang");
+  const supportedLangs = ["it", "fr", "de", "en"];
+  const browserLang = navigator.language.slice(0, 2);
+  const initialLang = supportedLangs.includes(paramLang)
+    ? paramLang
+    : supportedLangs.includes(browserLang)
+    ? browserLang
+    : "it";
+
+  setLanguage(initialLang);
+</script>
 </body>
 </html>
