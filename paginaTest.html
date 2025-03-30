@@ -117,14 +117,35 @@
       box-sizing: border-box;
       text-align: justify;
     }
-    .boxes-container {
-      flex-direction: column;
+    .section-title {
+      font-weight: bold;
+      color: #0097a9;
+      font-size: 12pt;
+      margin-bottom: 10px;
+      margin-top: 25px;
     }
-    .boxes-label {
-      width: auto; /* oppure semplicemente rimuovi questa riga */
+    .boxes-wrapper > p,
+    #text-box-intro {
+      font-size: 11pt;
+      margin-top: 0;
     }
-    .boxes-wrapper {
+    .boxes {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 12px;
+    }
+    .box {
+      background-color: #eeeeee;
       flex: 1;
+      font-size: 11pt;
+      text-align: center;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      padding: 20px;
     }
     .boxes-wrapper > p {
       margin-top: 0;
@@ -197,11 +218,8 @@
     </div>
 
     <div class="divider"></div>
-    <div class="boxes-container">
-      <div class="boxes-label">
-        <div class="section-title" id="label-section">Disposizioni</div>
-      </div>
-      <div class="boxes-wrapper">
+    <div class="section-title" id="label-section">Disposizioni</div>
+    <div class="boxes">
         <p id="text-box-intro">Prima della sospensione dell’acqua potabile, si invita l’utenza a voler osservare le seguenti disposizioni:</p>
         <div class="boxes">
           <div class="box" id="box1">Stoccare dell’acqua per eventuali urgenze</div>
