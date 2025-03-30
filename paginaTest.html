@@ -190,15 +190,12 @@
           A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:
         </div>
         <div class="date-box" id="riquadro">
-          <div class="date-line">MERCOLEDÌ</div>
-          <div class="date-line"><strong>01.01.2025</strong></div>
-          <div class="date-line">dalle 10:00 alle 15:00</div>
+          <!-- Dati dinamici -->
         </div>
       </div>
     </div>
 
     <div class="divider"></div>
-
     <div class="boxes-container">
       <div class="boxes-label">
         <div class="section-title" id="label-section">Disposizioni</div>
@@ -236,10 +233,20 @@
       </div>
     </div>
   </div>
-
   <script>
     const translations = {
       it: {
+        months: {
+          gennaio: "gennaio", febbraio: "febbraio", marzo: "marzo", aprile: "aprile",
+          maggio: "maggio", giugno: "giugno", luglio: "luglio", agosto: "agosto",
+          settembre: "settembre", ottobre: "ottobre", novembre: "novembre", dicembre: "dicembre"
+        },
+        days: {
+          LUNEDÌ: "LUNEDÌ", MARTEDÌ: "MARTEDÌ", MERCOLEDÌ: "MERCOLEDÌ",
+          GIOVEDÌ: "GIOVEDÌ", VENERDÌ: "VENERDÌ", SABATO: "SABATO", DOMENICA: "DOMENICA"
+        },
+        timePrefix: "dalle",
+        timeTo: "alle",
         labelTitle: "Sospensione<br>erogazione acqua<br>potabile",
         textIntro: "A seguito di lavori sulla rete di distribuzione verrà <strong>sospesa l’erogazione di acqua potabile</strong> il giorno:",
         labelSection: "Disposizioni",
@@ -251,6 +258,17 @@
         thanks: "Ringraziamo l’utenza per la comprensione e la collaborazione."
       },
       fr: {
+        months: {
+          gennaio: "janvier", febbraio: "février", marzo: "mars", aprile: "avril",
+          maggio: "mai", giugno: "juin", luglio: "juillet", agosto: "août",
+          settembre: "septembre", ottobre: "octobre", novembre: "novembre", dicembre: "décembre"
+        },
+        days: {
+          LUNEDÌ: "LUNDI", MARTEDÌ: "MARDI", MERCOLEDÌ: "MERCREDI",
+          GIOVEDÌ: "JEUDI", VENERDÌ: "VENDREDI", SABATO: "SAMEDI", DOMENICA: "DIMANCHE"
+        },
+        timePrefix: "de",
+        timeTo: "à",
         labelTitle: "Suspension<br>de l'alimentation<br>en eau potable",
         textIntro: "En raison de travaux sur le réseau de distribution, <strong>l’alimentation en eau potable sera suspendue</strong> le jour suivant :",
         labelSection: "Consignes",
@@ -262,6 +280,17 @@
         thanks: "Nous remercions les usagers pour leur compréhension et leur collaboration."
       },
       de: {
+        months: {
+          gennaio: "Januar", febbraio: "Februar", marzo: "März", aprile: "April",
+          maggio: "Mai", giugno: "Juni", luglio: "Juli", agosto: "August",
+          settembre: "September", ottobre: "Oktober", novembre: "November", dicembre: "Dezember"
+        },
+        days: {
+          LUNEDÌ: "MONTAG", MARTEDÌ: "DIENSTAG", MERCOLEDÌ: "MITTWOCH",
+          GIOVEDÌ: "DONNERSTAG", VENERDÌ: "FREITAG", SABATO: "SAMSTAG", DOMENICA: "SONNTAG"
+        },
+        timePrefix: "von",
+        timeTo: "bis",
         labelTitle: "Unterbrechung<br>der Trinkwasser-<br>versorgung",
         textIntro: "Aufgrund von Arbeiten am Verteilnetz wird die <strong>Trinkwasserversorgung am folgenden Tag unterbrochen</strong>:",
         labelSection: "Hinweise",
@@ -273,6 +302,17 @@
         thanks: "Wir danken den Nutzern für das Verständnis und die Mitarbeit."
       },
       en: {
+        months: {
+          gennaio: "January", febbraio: "February", marzo: "March", aprile: "April",
+          maggio: "May", giugno: "June", luglio: "July", agosto: "August",
+          settembre: "September", ottobre: "October", novembre: "November", dicembre: "December"
+        },
+        days: {
+          LUNEDÌ: "MONDAY", MARTEDÌ: "TUESDAY", MERCOLEDÌ: "WEDNESDAY",
+          GIOVEDÌ: "THURSDAY", VENERDÌ: "FRIDAY", SABATO: "SATURDAY", DOMENICA: "SUNDAY"
+        },
+        timePrefix: "from",
+        timeTo: "to",
         labelTitle: "Suspension<br>of drinking<br>water supply",
         textIntro: "Due to maintenance work on the distribution network, <strong>the supply of drinking water will be suspended</strong> on the following day:",
         labelSection: "Instructions",
@@ -286,22 +326,34 @@
     };
 
     function setLanguage(lang) {
-      // Legge i dati dinamici dalla URL
+      const t = translations[lang];
       const p = new URLSearchParams(window.location.search);
       const intestazione = p.get("intestazione") || "";
       const giorno = p.get("giorno") || "";
       const data = p.get("data") || "";
       const orario = p.get("orario") || "";
 
-      document.getElementById("intestazione").textContent = intestazione;
+      // ✏️ Traduzione intestazione (solo mese)
+      const matchInt = intestazione.match(/^(.*?, \d{2}) (\w+) (\d{4})$/);
+      const tradInt = matchInt ? `${matchInt[1]} ${t.months[matchInt[2]] || matchInt[2]} ${matchInt[3]}` : intestazione;
+      document.getElementById("intestazione").textContent = tradInt;
+
+      // ✏️ Traduzione orario
+      const orarioMatch = orario.match(/(\d{2}:\d{2}).+?(\d{2}:\d{2})/);
+      const orarioTradotto = orarioMatch
+        ? `${t.timePrefix} ${orarioMatch[1]} ${t.timeTo} ${orarioMatch[2]}`
+        : orario;
+
+      // ✏️ Traduzione giorno
+      const giornoTradotto = t.days[giorno.toUpperCase()] || giorno;
+
       document.getElementById("riquadro").innerHTML = `
-        <div class="date-line">${giorno.toUpperCase()}</div>
+        <div class="date-line">${giornoTradotto}</div>
         <div class="date-line"><strong>${data}</strong></div>
-        <div class="date-line">${orario}</div>
+        <div class="date-line">${orarioTradotto}</div>
       `;
 
-      // Traduzioni
-      const t = translations[lang];
+      // Traduzioni fisse
       document.getElementById("label-title").innerHTML = t.labelTitle;
       document.getElementById("text-intro").innerHTML = t.textIntro;
       document.getElementById("label-section").textContent = t.labelSection;
