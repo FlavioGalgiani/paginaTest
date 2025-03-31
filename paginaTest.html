@@ -326,8 +326,7 @@
     }
   };
 
-  let rawIntestazione, rawGiorno, rawData, rawOrario;
-
+  let rawIntestazione, rawGiorno, rawData, rawOrario, rawRiserva;
   function setLanguage(lang) {
     const t = translations[lang];
     const p = new URLSearchParams(window.location.search);
@@ -335,34 +334,41 @@
     const giorno = p.get("giorno") || rawGiorno || "";
     const data = p.get("data") || rawData || "";
     const orario = p.get("orario") || rawOrario || "";
-
-    // Salva le versioni originali (una volta sola)
+    const riserva = p.get("riserva") || rawRiserva || "";
+  
+    // Salva i valori originali (una volta sola)
     if (!rawIntestazione) rawIntestazione = intestazione;
     if (!rawGiorno) rawGiorno = giorno;
     if (!rawData) rawData = data;
     if (!rawOrario) rawOrario = orario;
-
+    if (!rawRiserva) rawRiserva = riserva;
+  
     // Traduzione intestazione (solo mese)
     const matchInt = rawIntestazione.match(/^(.*?, \d{2}) (\w+) (\d{4})$/);
     const tradInt = matchInt ? `${matchInt[1]} ${t.months[matchInt[2]] || matchInt[2]} ${matchInt[3]}` : rawIntestazione;
     document.getElementById("intestazione").textContent = tradInt;
-
+  
     // Traduzione orario
     const orarioMatch = rawOrario.match(/(\d{2}:\d{2}).+?(\d{2}:\d{2})/);
     const orarioTradotto = orarioMatch
       ? `${t.timePrefix} ${orarioMatch[1]} ${t.timeTo} ${orarioMatch[2]}`
       : rawOrario;
-
+  
     // Traduzione giorno
     const normalize = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
     const giornoTradotto = t.days[normalize(rawGiorno)] || rawGiorno;
-
-    document.getElementById("riquadro").innerHTML = `
+  
+    // Composizione del riquadro
+    let riquadroHTML = `
       <div class="date-line">${giornoTradotto}</div>
       <div class="date-line"><strong>${rawData}</strong></div>
       <div class="date-line">${orarioTradotto}</div>
     `;
-
+    if (rawRiserva) {
+      riquadroHTML += `<div class="date-line">${rawRiserva}</div>`;
+    }
+    document.getElementById("riquadro").innerHTML = riquadroHTML;
+  
     // Traduzioni fisse
     document.getElementById("label-title").innerHTML = t.labelTitle;
     document.getElementById("text-intro").innerHTML = t.textIntro;
@@ -374,7 +380,6 @@
     document.getElementById("text-disclaimer").textContent = t.disclaimer;
     document.getElementById("text-thanks").textContent = t.thanks;
   }
-
   const urlParams = new URLSearchParams(window.location.search);
   const paramLang = urlParams.get("lang");
   const supportedLangs = ["it", "fr", "de", "en"];
