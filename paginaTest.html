@@ -367,7 +367,7 @@
       <div class="date-line"><strong>${rawData}</strong></div>
       <div class="date-line">${orarioTradotto}</div>
     `;
-    if (rawRiserva) {
+    if (rawRiserva && rawRiserva.trim() !== "") {
       riquadroHTML += `<div class="date-line">${rawRiserva}</div>`;
     }
     const riquadro = document.getElementById("riquadro");
