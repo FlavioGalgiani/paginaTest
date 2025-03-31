@@ -388,7 +388,12 @@
       <div class="date-line">${orarioTradotto}</div>
     `;
     if (rawRiserva && rawRiserva.trim() !== "") {
-      riquadroHTML += `<div class="date-line">${rawRiserva}</div>`;
+      const ore = rawRiserva.match(/(\d{2}:\d{2}).+?(\d{2}:\d{2})/);
+      const riservaTradotta = ore
+        ? `${t.riservaPrefix} ${t.riservaFrom} ${ore[1]} ${t.riservaTo} ${ore[2]}`
+        : rawRiserva;
+    
+      riquadroHTML += `<div class="date-line">${riservaTradotta}</div>`;
     }
     const riquadro = document.getElementById("riquadro");
     riquadro.innerHTML = riquadroHTML;
