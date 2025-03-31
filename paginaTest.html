@@ -384,7 +384,7 @@
     // Composizione del riquadro
     const dataMatch = rawData.match(/^(\d{2}) (\w+) (\d{4})$/);
     const dataTradotta = dataMatch
-      ? `${dataMatch[1]} ${t.months[dataMatch[2]] || dataMatch[2]} ${dataMatch[3]}`
+      ? `${dataMatch[1]} ${t.months[dataMatch[2].toLowerCase()] || dataMatch[2]} ${dataMatch[3]}`
       : rawData;
     
     let riquadroHTML = `
