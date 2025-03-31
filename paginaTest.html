@@ -89,6 +89,9 @@
       border-radius: 4px;
       margin-top: 4px;
     }
+    .date-box.compact {
+    padding: 20px;
+    }
     .date-line {
       margin: 0;
       line-height: 1.5;
@@ -367,8 +370,10 @@
     if (rawRiserva) {
       riquadroHTML += `<div class="date-line">${rawRiserva}</div>`;
     }
-    document.getElementById("riquadro").innerHTML = riquadroHTML;
-  
+    const riquadro = document.getElementById("riquadro");
+    riquadro.innerHTML = riquadroHTML;
+    riquadro.classList.toggle("compact", !rawRiserva);
+    
     // Traduzioni fisse
     document.getElementById("label-title").innerHTML = t.labelTitle;
     document.getElementById("text-intro").innerHTML = t.textIntro;
